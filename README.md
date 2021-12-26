@@ -9,7 +9,8 @@ Currently, it has 3 topic:
 
 1. **src/main/kotlin/lesson1_hello_world_sample** - hello-world sample.
 2. **src/main/kotlin/lesson2_classes_sample** - classes.
-3. **src/main/kotlin/lesson3_statements_sample** statements and operators.
-4. **src/main/kotlin/lesson4_exceptions** exceptions.
+3. **src/main/kotlin/lesson3_statements_sample** - statements and operators.
+4. **src/main/kotlin/lesson4_exceptions** - exceptions.
+5. **src/main/kotlin/lesson5_functions** - functions.
 
-The list is going to be updated and extended.  
+The list is going to be updated and extended.
