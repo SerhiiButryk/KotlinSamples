@@ -1,5 +1,5 @@
 /**
- * Copyright 2021. Happy codding ! :)
+ * Copyright 2021. Happy coding ! :)
  * Author: Serhii Butryk
  */
 package lesson2_classes_sample
@@ -15,8 +15,8 @@ class Rectangle(val height: Int, val width: Int) {
      * we can dynamically calculate the value of it.
      **/
     val isSquare: Boolean
-    get() {
-        return height == width
-    }
+        get() {
+            return height == width
+        }
 
 }

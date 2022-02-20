@@ -1,5 +1,5 @@
 /**
- * Copyright 2021. Happy codding ! :)
+ * Copyright 2021. Happy coding ! :)
  * Author: Serhii Butryk
  */
 package lesson5_functions
@@ -80,10 +80,12 @@ import kotlin.text.StringBuilder
  *
  * First implementation (not an extension function).
  */
-fun <T> joinToString(collection: Collection<T>,
-                     separator: String = ", ",
-                     prefix: String = "",
-                     postfix: String = ""): String {
+fun <T> joinToString(
+    collection: Collection<T>,
+    separator: String = ", ",
+    prefix: String = "",
+    postfix: String = ""
+): String {
 
     val result = StringBuilder(prefix)
 
@@ -100,8 +102,10 @@ fun <T> joinToString(collection: Collection<T>,
  *
  * Second implementation (an extension function).
  */
-fun Collection<String>.join(separator: String = ", ", prefix: String = "",
-    postfix: String = "") = joinToString(this, separator, prefix, postfix)
+fun Collection<String>.join(
+    separator: String = ", ", prefix: String = "",
+    postfix: String = ""
+) = joinToString(this, separator, prefix, postfix)
 
 /**
  * Simple extension function for String class
@@ -114,7 +118,7 @@ fun String.myLastIndex(): Char = get(length - 1)
  */
 var StringBuilder.lastChar: Char
     get() = get(length - 1)
-    set(value: Char) {
+    set(value) {
         this.setCharAt(length - 1, value)
     }
 
@@ -143,7 +147,7 @@ class User(val id: Int, val name: String, val address: String)
 fun User.validateBeforeSave() {
     // Local function
     fun validate(value: String, fieldName: String) {
-        if(value.isEmpty()) {
+        if (value.isEmpty()) {
             throw IllegalArgumentException("Can't save user $id, empty $fieldName")
         }
     }
@@ -161,7 +165,7 @@ fun saveUser(user: User) {
 
 // Main function
 fun main() {
-    val list = listOf(1,2,3)
+    val list = listOf(1, 2, 3)
 
     // Call with default arguments
     println(joinToString(list))
@@ -184,6 +188,6 @@ fun main() {
     println(sb)
 
     // Call vararg function. Note how array can be passed as argument.
-    val otherElements:Array<String> = arrayOf("elem2", "elem3")
+    val otherElements: Array<String> = arrayOf("elem2", "elem3")
     countItems(10, "elem1", *otherElements)
 }

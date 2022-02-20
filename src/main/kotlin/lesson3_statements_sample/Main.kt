@@ -1,5 +1,5 @@
 /**
- * Copyright 2021. Happy codding ! :)
+ * Copyright 2021. Happy coding ! :)
  * Author: Serhii Butryk
  */
 package lesson3_statements_sample
@@ -24,7 +24,7 @@ import java.util.*
 
 fun main() {
 
-    val john = Person("John", false);
+    val john = Person("John", false)
 
     // For example, "if" statement can return value.
     val message = if (john.isMarried) "John is married" else "John isn't married"
@@ -79,7 +79,7 @@ fun main() {
     println("Open range 2 >>")
 
     // Equals to this
-    for (x in 0..size-1) {
+    for (x in 0 until size) {
         println("Got $x")
     }
 
@@ -92,7 +92,7 @@ fun main() {
         binaryReps[c] = binaryValue
     }
 
-    for((letter, binary) in binaryReps) {
+    for ((letter, binary) in binaryReps) {
         println("$letter = $binary")
     }
 
@@ -119,52 +119,52 @@ fun main() {
 
 // Get word associated with color from a phrase - "Каждий охотник желает знать где сидит фазан"
 fun getMnemonic(color: Color) =
-        when (color) {
-            Color.RED -> "Каждый"
-            Color.ORANGE -> "Охотник"
-            Color.YELLOW -> "Желает"
-            Color.GREEN -> "Знать"
-            Color.BLUE -> "Где"
-            Color.INDIGO -> "Сидит"
-            Color.VIOLET -> "Фазан"
-        }
+    when (color) {
+        Color.RED -> "Каждый"
+        Color.ORANGE -> "Охотник"
+        Color.YELLOW -> "Желает"
+        Color.GREEN -> "Знать"
+        Color.BLUE -> "Где"
+        Color.INDIGO -> "Сидит"
+        Color.VIOLET -> "Фазан"
+    }
 
 // Another example with several values in one branch
 fun getWarmth(color: Color) =
-        when(color) {
-            Color.RED, Color.ORANGE, Color.YELLOW -> "Теплый"
-            Color.GREEN -> "Нейтральный"
-            Color.BLUE, Color.INDIGO, Color.VIOLET -> "Холодный"
-        }
+    when (color) {
+        Color.RED, Color.ORANGE, Color.YELLOW -> "Теплый"
+        Color.GREEN -> "Нейтральный"
+        Color.BLUE, Color.INDIGO, Color.VIOLET -> "Холодный"
+    }
 
 // When statement can work with not only constants but also with any objects
 fun mixColors(c1: Color, c2: Color) =
-        when(setOf(c1, c2)) {
-            setOf(Color.RED, Color.YELLOW) -> Color.ORANGE
-            setOf(Color.YELLOW, Color.BLUE) -> Color.GREEN
-            setOf(Color.BLUE, Color.VIOLET) -> Color.INDIGO
-            else -> throw Exception("Bad color combination")
-        }
+    when (setOf(c1, c2)) {
+        setOf(Color.RED, Color.YELLOW) -> Color.ORANGE
+        setOf(Color.YELLOW, Color.BLUE) -> Color.GREEN
+        setOf(Color.BLUE, Color.VIOLET) -> Color.INDIGO
+        else -> throw Exception("Bad color combination")
+    }
 
 // Method with better performance than mixColors method
 // Instead of setOf() calls we use logic operation as a condition
 fun mixColorsOptimized(c1: Color, c2: Color) =
-        when {
-            ((c1 == Color.RED && c2 == Color.YELLOW) ||
-                    (c1 == Color.YELLOW && c2  == Color.RED)) -> Color.ORANGE
+    when {
+        ((c1 == Color.RED && c2 == Color.YELLOW) ||
+                (c1 == Color.YELLOW && c2 == Color.RED)) -> Color.ORANGE
 
-            ((c1 == Color.YELLOW && c2 == Color.BLUE) ||
-                    (c1 == Color.BLUE && c2 == Color.YELLOW)) -> Color.GREEN
+        ((c1 == Color.YELLOW && c2 == Color.BLUE) ||
+                (c1 == Color.BLUE && c2 == Color.YELLOW)) -> Color.GREEN
 
-            ((c1 == Color.BLUE && c2 == Color.VIOLET) ||
-                    (c1 == Color.VIOLET && c2 == Color.BLUE)) -> Color.INDIGO
+        ((c1 == Color.BLUE && c2 == Color.VIOLET) ||
+                (c1 == Color.VIOLET && c2 == Color.BLUE)) -> Color.INDIGO
 
-            else -> throw Exception("Bad color combination")
-        }
+        else -> throw Exception("Bad color combination")
+    }
 
 // Example of more advance usage
 fun checkType(e: Any): String =
-    when(e) {
+    when (e) {
         is Int -> "Integer"
         is String -> "String"
         else -> "Unknown type"

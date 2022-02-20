@@ -1,5 +1,5 @@
 /**
- * Copyright 2021. Happy codding ! :)
+ * Copyright 2021. Happy coding ! :)
  * Author: Serhii Butryk
  */
 package lesson2_classes_sample
@@ -25,4 +25,4 @@ package lesson2_classes_sample
 /**
  * Compiler automatically generates fields and their setters and getters if it's needed
  */
-data class Person(val name: String, var isMarried: Boolean)
+data class Person(val name: String, var isMarried: Boolean = false)

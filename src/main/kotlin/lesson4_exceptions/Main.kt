@@ -1,5 +1,5 @@
 /**
- * Copyright 2021. Happy codding ! :)
+ * Copyright 2021. Happy coding ! :)
  * Author: Serhii Butryk
  */
 
@@ -19,16 +19,16 @@ import java.lang.NumberFormatException
 fun main() {
 
     // Throw exception
-    val percentage = 100;
+    val percentage = 100
     if (percentage !in 1..100) {
         throw IllegalArgumentException("A percentage value must be between 0 and 100")
     }
 
     // Different way
-    val inputParam = 100;
+    val inputParam = 100
     // Assign value or throw exception
     val result = if (inputParam in 1..100) inputParam
-        else throw IllegalArgumentException("A percentage value must be between 0 and 100")
+    else throw IllegalArgumentException("A percentage value must be between 0 and 100")
 
     // Call method which catches exceptions inside
     readInt(BufferedReader(StringReader("hello"))) // Got exception
