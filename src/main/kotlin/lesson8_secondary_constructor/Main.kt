@@ -4,6 +4,9 @@
  */
 package lesson8_secondary_constructor
 
+import kotlin.properties.ReadWriteProperty
+import kotlin.reflect.KProperty
+
 /**
  * 1. Different ways of implementing properties
  */
@@ -50,8 +53,8 @@ class LengthCounter {
 /**
  * 4. Equal operation
  *
- * In Kotlin, '==' operator invodes 'equals' method and '===' operator actually compares object referencese.
- * Always implement both of 'hashcode' and 'equals' method. This eliminates possible mistakes.
+ * In Kotlin, '==' operator invokes 'equals' method and '===' operator actually compares object referencese.
+ * Always implement both of 'hashcode' and 'equals' method. This avoids possible mistakes.
  */
 
 /**
@@ -78,6 +81,34 @@ class CountingSet<T>(
         return innerSet.addAll(elements)
     }
 
+}
+
+/**
+ * Properties can be decorated as well using by keyword. This can be usefull when you need
+ * to reuse getter/setter logic.
+ *
+ * The next example demonstraits this feature.
+ */
+
+// Suppose we have class Person. We need to add formating
+// to 'name' and 'lastname' fields. We can do this using setter/getter.
+// However, logic will be dublicated if we don't use delegation.
+// Property delegation resolves this issue.
+class Person(name: String, lastname: String) {
+    var name: String by FormatDelegate()
+    var lastname: String by FormatDelegate()
+}
+
+class FormatDelegate : ReadWriteProperty<Any?, String> {
+    private var formattedString: String = ""
+
+    override fun getValue(thisRef: Any?, property: KProperty<*>): String {
+        return formattedString
+    }
+
+    override fun setValue(thisRef: Any?, property: KProperty<*>, value: String) {
+        formattedString = value.lowercase().replaceFirstChar { it.uppercase() }
+    }
 }
 
 fun main() {

@@ -5,7 +5,7 @@
 package lesson6_classes.cars
 
 /**
- * Simple interface declaration
+ * Example of simple interface declaration
  *
  * Methods are abstract or open by default
  */

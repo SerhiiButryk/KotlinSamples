@@ -5,10 +5,11 @@
 package lesson1_hello_world_sample
 
 /**
- *  Simple kotlin program. Demonstrates kotlin basic syntax.
+ *  Basic program which demonstrates basic syntax of the language.
  *
- *  Compile and run kotlin:
+ *  Compile:
  *  $ kotlinc Main.kt -include-runtime -d app.jar
+ *  Run:
  *  $ java -jar app.jar Bob
  */
 fun main(args: Array<String>) {

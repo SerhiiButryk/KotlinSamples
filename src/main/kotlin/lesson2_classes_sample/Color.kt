@@ -5,7 +5,7 @@
 package lesson2_classes_sample
 
 /**
- * Example of simple enum class in Kotlin
+ * Example of simple enum class
  */
 enum class Color(val red: Int, val green: Int, val blue: Int) {
 

@@ -8,10 +8,10 @@ import lesson2_classes_sample.Person
 import java.io.File
 
 /**
- * In Kotlin, 'object' keyword declares and creates an object. It plays 2 important roles:
+ * In Kotlin, 'object' keyword declares and creates an object. It plays 3 important roles:
  * 1. Can be used to implement Singleton pattern
  * 2. Can be used to implement Companion object
- * 3. Can be used to declare anonimus inner class
+ * 3. Can be used to declare Anonimus class
  */
 
 /**
@@ -49,7 +49,7 @@ data class Person(val name: String) {
 }
 
 /**
- * Companion object declaration.
+ * 3. Companion object declaration.
  */
 class A {
     companion object {
@@ -84,7 +84,7 @@ class User private constructor(val nickname: String) {
 }
 
 /**
- * Companion object can have name, extension functions and can implement interfaces.
+ * Companion object can implement interfaces, have name and extension functions.
  * If object doesn't have name, the default - Companion - is used.
  * Otherwise object fields and methods can be accessed using its name.
  */
@@ -134,6 +134,7 @@ class Window {
             mouseListeners.add(listener)
         }
     }
+
 }
 
 fun main() {
@@ -188,8 +189,7 @@ fun main() {
 
     var counter = 0
 
-    // Note that the class has access to local variables
-    // Or another way
+    // Note that the class has access to local variables.
     val listener = object : MauseListener {
         override fun mouseClicked(actionId: Int) {
             println("mouseClicked() is called")

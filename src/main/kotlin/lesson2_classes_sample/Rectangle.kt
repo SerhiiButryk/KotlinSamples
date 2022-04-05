@@ -5,6 +5,8 @@
 package lesson2_classes_sample
 
 /**
+ * Example of a simple class
+ *
  * Compiler automatically generates fields and their setters and getters if it's needed
  */
 class Rectangle(val height: Int, val width: Int) {
@@ -12,7 +14,7 @@ class Rectangle(val height: Int, val width: Int) {
     /** Property which doesn't contain data.
      * There is no need to define property for holding
      * information whether rectangle is square or not as
-     * we can dynamically calculate the value of it.
+     * we can dynamically calculate this value.
      **/
     val isSquare: Boolean
         get() {

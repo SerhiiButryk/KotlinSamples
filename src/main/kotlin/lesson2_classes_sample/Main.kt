@@ -5,12 +5,12 @@
 package lesson2_classes_sample
 
 /**
- * Lesson 1. Properties in Kotlin
+ * Lesson 1. Properties
  *
  * Properties of classes are fields along with setter and getter methods.
  * Properties in Kotlin can be of 2 types: val and var.
  *
- * Lesson 2. Classes in Kotlin
+ * Lesson 2. Classes
  *
  *  Classes in Kotlin can have:
  *  1. Object declaration

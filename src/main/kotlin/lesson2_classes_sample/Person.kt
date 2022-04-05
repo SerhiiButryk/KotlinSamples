@@ -8,9 +8,9 @@ package lesson2_classes_sample
  *  Example of a simple Data class.
  *
  *  Compiler generates functions:
- *  1. equals() / hashCode() pair
+ *  1. equals() & hashCode() pair
  *  2. toString()
- *  3. componentN() corresponding to the properties in their order of declaration
+ *  3. componentN() - corresponding to the properties in their order of declaration
  *  4. copy()
  *
  *  Restrictions:
