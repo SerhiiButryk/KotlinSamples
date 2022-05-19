@@ -2,9 +2,9 @@
  * Copyright 2022. Happy coding ! :)
  * Author: Serhii Butryk
  */
-package design_patterns.bridge.impl
+package design_patterns.bridge.impl.storages
 
-interface StorageRepository {
+interface ApplicationStorage {
 
     fun store()
 

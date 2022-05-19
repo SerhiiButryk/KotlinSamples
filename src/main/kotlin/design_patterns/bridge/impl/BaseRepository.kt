@@ -4,7 +4,9 @@
  */
 package design_patterns.bridge.impl
 
-abstract class BaseRepository(protected var storageRepoImpl: StorageRepository) {
+import design_patterns.bridge.impl.storages.ApplicationStorage
+
+abstract class BaseRepository(protected var storageRepoImpl: ApplicationStorage) {
 
     open fun saveData() {
         storageRepoImpl.store()

@@ -5,7 +5,7 @@
 package design_patterns.bridge
 
 import design_patterns.bridge.impl.ApplicationRepository
-import design_patterns.bridge.impl.RemoteStorage
+import design_patterns.bridge.impl.storages.RemoteStorage
 
 /**
  * Bridge pattern
