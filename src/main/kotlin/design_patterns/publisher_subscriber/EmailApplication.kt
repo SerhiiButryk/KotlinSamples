@@ -10,10 +10,11 @@ import design_patterns.publisher_subscriber.impl.NotificationManager
 /**
  *  Publisher-Subscriber pattern.
  *
+ *  Email creation application.
+ *
  *  Description:
  *
- *  Email creation application.
- *  It demonstraits the use of Observer Patern when all interested parties are notified about event.
+ *  It demonstrates the use of Observer Pattern when all interested parties are notified about event.
  *
  *  Definition: Define a one-to-many dependency between objects so that when one object
  *  changes state, all its dependents are notified and updated automatically.
@@ -27,9 +28,9 @@ fun main() {
     val notificationManager = NotificationManager()
     emailEditor.subscribe(notificationManager)
 
-    // 1. User created email
+    // 1. User creates email
     emailEditor.createEmail("Hello this is my first email")
-    // 2. User sent email
+    // 2. User sends email
     emailEditor.sentEmail()
 
     // Email is sent so unsubscribe observers

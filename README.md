@@ -18,11 +18,12 @@ Currently, it has 12 topics:
 9. **src/main/kotlin/lesson9_object_declaration** - usage of "object" keyword.
 10. **src/main/kotlin/lesson10_lambda_expressions** - lambda.
 11. **src/main/kotlin/lesson11_lambda_collections** - using lambda in collections.
-12. **src/main/kotlin/lesson12_regular_expressions** - using regular expresions.
+12. **src/main/kotlin/lesson12_regular_expressions** - using regular expressions.
 
 Examples of design patterns:
 
 1. **src/main/kotlin/design_patterns/bridge** - bridge example.
 2. **src/main/kotlin/design_patterns/publisher_subscriber** - observer example.
+3. **src/main/kotlin/design_patterns/state** - state example.
 
 The list is going to be updated and extended.

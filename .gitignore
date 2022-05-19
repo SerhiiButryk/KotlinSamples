@@ -24,6 +24,5 @@ hs_err_pid*2
 
 # non-project related files
 **/build/
-**/gradle/
 **/.gradle/*
 **/.idea/
