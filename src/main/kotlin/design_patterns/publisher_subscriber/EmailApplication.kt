@@ -21,19 +21,19 @@ import design_patterns.publisher_subscriber.impl.NotificationManager
  */
 fun main() {
 
-    // Create main application class
+    // 1. Create main application class
     val emailEditor = EmailEditor()
 
-    // Subscribe to events in EmailEditor class
+    // 2. Subscribe to events in EmailEditor class
     val notificationManager = NotificationManager()
     emailEditor.subscribe(notificationManager)
 
-    // 1. User creates email
+    // 3. User creates email
     emailEditor.createEmail("Hello this is my first email")
-    // 2. User sends email
+    // 4. User sends email
     emailEditor.sentEmail()
 
-    // Email is sent so unsubscribe observers
+    // 5. Email is sent so unsubscribe observers
     emailEditor.unsubscribe(notificationManager)
 
 }

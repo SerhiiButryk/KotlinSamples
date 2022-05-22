@@ -26,5 +26,7 @@ Examples of design patterns:
 2. **src/main/kotlin/design_patterns/publisher_subscriber** - observer example.
 3. **src/main/kotlin/design_patterns/state** - state example.
 4. **src/main/kotlin/design_patterns/state_machine** - state machine example.
+5. **src/main/kotlin/design_patterns/chain_of_responsibilities** - chain of responsibilities example.
+6. **src/main/kotlin/design_patterns/command** - command example.
 
 The list is going to be updated and extended.
