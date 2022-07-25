@@ -10,7 +10,7 @@ package lesson7_class_constructors
     Eventually, every class can have:
     1. Primary constructor
     2. Secondary constructor
-    3. Init blocks (for performing non-trivial initalization operations)
+    3. Init blocks (for performing non-trivial initialization operations)
     4. Properties
     5. Methods
     6. Inner and Nested classes
@@ -56,7 +56,7 @@ open class Fruit(val name: String)
 
 class Apple(name: String) : Fruit(name)
 
-// .... differnt hierarchy
+// .... different hierarchy
 open class Button
 
 /*

@@ -10,7 +10,7 @@ package lesson10_lambda_expressions
  * Lambda functions are good because:
  * 1. They simplify work with collections.
  * 2. They make code more understandable.
- * 3. They help to get rid of code dublication.
+ * 3. They help to get rid of code duplication.
  *
  * Syntax: (x: Int, y: Int) -> x + y
  *
@@ -35,7 +35,7 @@ fun main() {
      */
     val names = persons.joinToString (separator = " ",  transform = { p: Person -> p.name })
     println(names)
-    // Lambda function can be moved out of parentethis
+    // Lambda function can be moved out of parenthesis
     val names2 = persons.joinToString (separator = " ") { p: Person -> p.name }
     println(names2)
 

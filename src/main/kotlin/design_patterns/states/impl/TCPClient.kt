@@ -40,7 +40,7 @@ class TCPClient : TCPClientAPIs {
 
     fun changeState(newState: TCPState, oldState: TCPState) {
         println("$TAG.changeState new: $newState, old: $oldState")
-        // There can be state checks skip them for simplicity.
+        // There can be state checks. Skipped for simplicity.
         currentState = newState
     }
 

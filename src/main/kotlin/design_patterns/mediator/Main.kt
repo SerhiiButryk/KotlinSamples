@@ -3,7 +3,7 @@
  *  Author: Serhii Butryk
  */
 
-package design_patterns.metiator
+package design_patterns.mediator
 
 /**
  * Mediator pattern

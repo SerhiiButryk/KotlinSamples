@@ -22,12 +22,10 @@ import design_patterns.chain_of_responsibilities.impl.ui_components.Window
  * If request is not processed by a handler, it is passed to another handler.
  *
  * Model 2:
- * If request is passed sequentially to next handled, if it is available.
+ * Request is passed sequentially to next handled, if it is available.
  *
  * In this pattern, each of the handles can be reused.
- *
- * Definition: Let you pass requests along a chain of handlers
- *
+ * Definition: Let you pass requests along a chain of handlers.
  * Example demonstrates the use of this pattern to propagate a touch UI event to all widgets.
  */
 

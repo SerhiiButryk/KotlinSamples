@@ -11,7 +11,7 @@ package lesson7_class_constructors
  */
 fun main() {
 
-    // 1. Creat a class
+    // 1. Create a class
     val button = Button()
 
     // 2. Call constructor with default arguments

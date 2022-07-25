@@ -22,7 +22,7 @@ package lesson2_classes_sample
  *  Lesson 3. Packages
  *
  *  Kotlin doesn't have any restrictions on packages and files.
- *  In Kotlin, file doesn't have to have the same name as the class
+ *  In Kotlin, file doesn't have to be the same name as the class
  *  which it contains. Moreover, it allows to place several classes in one file
  *  and arbitrary name it.
  *

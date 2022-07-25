@@ -84,15 +84,15 @@ class CountingSet<T>(
 }
 
 /**
- * Properties can be decorated as well using by keyword. This can be usefull when you need
+ * Properties can be decorated as well using by keyword. This can be useful when you need
  * to reuse getter/setter logic.
  *
- * The next example demonstraits this feature.
+ * The next example demonstrates this feature.
  */
 
-// Suppose we have class Person. We need to add formating
+// Suppose we have class Person. We need to add formatting
 // to 'name' and 'lastname' fields. We can do this using setter/getter.
-// However, logic will be dublicated if we don't use delegation.
+// However, logic will be duplicated if we don't use delegation.
 // Property delegation resolves this issue.
 class Person(name: String, lastname: String) {
     var name: String by FormatDelegate()
