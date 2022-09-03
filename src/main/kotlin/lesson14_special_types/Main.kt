@@ -32,6 +32,7 @@ fun main() {
 
     // Convert Kotlin arrays to java arrays
     val javaArray = intArray.toIntArray()
+    println(javaArray)
 
 }
 

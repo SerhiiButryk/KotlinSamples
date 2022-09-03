@@ -1,9 +1,14 @@
+/*
+ *  Copyright 2022. Happy coding ! :)
+ *  Author: Serhii Butryk
+ */
+
 package lesson15_collections
 
 /**
  * Collections in Kotlin
  *
- * In Kotlin collections can be :
+ * In Kotlin collections can be
  * 1) Mutable or immutable
  * 3) Nullable or not nullable (can or cannot have null elements)
  *
