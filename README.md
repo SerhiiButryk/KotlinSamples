@@ -22,6 +22,8 @@ Examples of Kotlin samples:
 13. **src/main/kotlin/lesson13_null_safety** - use of null expressions.
 14. **src/main/kotlin/lesson14_special_types** - use of special types.
 15. **src/main/kotlin/lesson15_collections** - use of collections.
+16. **src/main/kotlin/lesson16_delegation** - use of delegation.
+17. **src/main/kotlin/lesson17_operators** - use of operators.
 
 Examples of design patterns:
 

@@ -17,19 +17,21 @@ import kotlin.reflect.KProperty
 // 1. Simple property delegation
 
 abstract class Driver {
-    abstract operator fun getValue(machine: Machine, property: KProperty<*>): Driver
-    abstract operator fun setValue(machine: Machine, property: KProperty<*>, driver: Driver)
+    // Object getter interface
+    abstract operator fun getValue(thisRef: Machine, property: KProperty<*>): Driver
+    // Object setter interface
+    abstract operator fun setValue(thisRef: Machine, property: KProperty<*>, value: Driver)
     abstract fun drive()
 }
 
 class CarDriver : Driver() {
-    override fun getValue(machine: Machine, property: KProperty<*>): Driver {
-        log("CarDriver.getValue() {machine = $machine, property = $property}")
+    override fun getValue(thisRef: Machine, property: KProperty<*>): Driver {
+        log("CarDriver.getValue() {thisRef = $thisRef, property = $property}")
         return this
     }
 
-    override fun setValue(machine: Machine, property: KProperty<*>, driver: Driver) {
-        log("CarDriver.setValue() {machine = $machine, property = $property, driver = $driver}")
+    override fun setValue(thisRef: Machine, property: KProperty<*>, value: Driver) {
+        log("CarDriver.setValue() {thisRef = $thisRef, property = $property, driver = $value}")
         // no-op
     }
 
@@ -39,6 +41,7 @@ class CarDriver : Driver() {
 }
 
 class Machine() {
+    // All method calls are called from CarDriver()
     private val driver: Driver by CarDriver()
     fun drive() { driver.drive() }
 }
