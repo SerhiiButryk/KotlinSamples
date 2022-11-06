@@ -64,7 +64,7 @@ fun main() {
     println("Cycle backward >>")
 
     // Cycle range in reverse order
-    for (i in 10 downTo 1 step 2) {
+        for (i in 10 downTo 1 step 2) {
         println("Got: $i")
     }
 
