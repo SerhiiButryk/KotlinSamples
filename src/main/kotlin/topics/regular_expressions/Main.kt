@@ -14,6 +14,7 @@
  *
  * ? - matches 0 or 1 repetitions
  * * - matches 0 or more repetitions
+ * + - 1 or more repetitions
  * {n} - matches exactly n repetitions
  *
  * Carriage return - '\r'
@@ -21,7 +22,13 @@
  * Form feed - '\f'
  * Tab - '\t'
  *
- * Kotlin regex :
+ * . = any char except newline
+ * \. = the actual dot character
+ * .? = .{0,1} = match any char except newline zero or one times
+ * .* = .{0,} = match any char except newline zero or more times
+ * .+ = .{1,} = match any char except newline one or more times
+ *
+ * Kotlin regex:
  * Regex.matchEntire() - Check if whole input string matches pattern
  * Regex.find() - Find first match if any in input string
  * Regex.findAll() - Find all first matches if any in input string

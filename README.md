@@ -24,6 +24,8 @@ Examples of Kotlin samples:
 15. **src/main/kotlin/lesson15_collections** - use of collections.
 16. **src/main/kotlin/lesson16_delegation** - use of delegation.
 17. **src/main/kotlin/lesson17_operators** - use of operators.
+18. **src/main/kotlin/lesson18_high_order_function** - use of high order functions.
+19. **src/main/kotlin/lesson19_scope_function** - use of scope functions.
 
 Examples of design patterns:
 

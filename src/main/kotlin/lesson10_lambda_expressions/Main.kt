@@ -18,6 +18,9 @@ package lesson10_lambda_expressions
  * 1. Can be passed as an argument to a function.
  * 2. Can be saved to local variable.
  * 3. Can access and modify local variables.
+ *
+ * However, lambda expressions doesn't have a return type.
+ * If you want to specify return type explicitly use unanimous functions.
  */
 
 data class Person(val name: String, val age: Int)
