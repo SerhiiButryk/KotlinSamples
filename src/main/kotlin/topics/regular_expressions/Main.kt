@@ -33,8 +33,6 @@
  * Regex.find() - Find first match if any in input string
  * Regex.findAll() - Find all first matches if any in input string
  * Regex.containsMatch() - Find all first matches if any in input string
- *
- * Concept of groups in regex - https://www.tutorialspoint.com/javaregex/javaregex_capturing_groups.htm
  */
 
 fun main() {

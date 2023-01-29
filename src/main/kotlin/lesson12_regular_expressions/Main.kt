@@ -9,6 +9,11 @@ package lesson12_regular_expressions
  *
  * Kotlin adds new operator for defining regular expressions.
  * It is triple quotes - """ """. Here are the examples of work with regular expressions.
+ *
+ * Concept of groups in regex:
+ * https://pynative.com/python-regex-capturing-groups/
+ * Test here:
+ * https://regexr.com/
  */
 fun main() {
 
