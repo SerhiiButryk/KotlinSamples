@@ -12,7 +12,8 @@ package lesson12_regular_expressions
  */
 fun main() {
 
-    val pattern1 = "\\.|-"
+    // Do not need to escape special characters with this syntax
+    val pattern1 = """(\.|-)"""
     val text = "12.345-6.A"
 
     val result = text.split(pattern1.toRegex())
@@ -26,10 +27,19 @@ fun main() {
     // Do not need to escape special characters with this syntax
     val regex = """(.+)/(.+)\.(.+)""".toRegex()
 
-    val matchResult = regex.matchEntire(path)
-    if (matchResult != null) {
-        val (directory, filename, extension) = matchResult.destructured
+    val matchResult = regex.findAll(path)
+    for (result in matchResult) {
+
+        println("Group size " +
+                "${result.groups.size}")
+
+        println("${result.groups[0]?.value}")
+        println("${result.groups[1]?.value}")
+        println("${result.groups[2]?.value}")
+        println("${result.groups[3]?.value}")
+
+        // The same result as above
+        val (directory, filename, extension) = result.destructured
         println("Directory: $directory, file name: $filename, extension: $extension")
     }
-
 }
