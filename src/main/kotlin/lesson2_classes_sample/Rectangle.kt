@@ -7,7 +7,7 @@ package lesson2_classes_sample
 /**
  * Example of a simple class
  *
- * Compiler automatically generates fields and their setters and getters if it's needed
+ * Compiler automatically generates setters and getters for fields if they are needed
  */
 class Rectangle(val height: Int, val width: Int) {
 

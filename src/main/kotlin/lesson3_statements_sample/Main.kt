@@ -10,12 +10,11 @@ import java.lang.Exception
 import java.util.*
 
 /**
- *  Basically, any programming language consists of instructions and statements.
- *  Unlike Java, in Kotlin statements can be instructions.
- *  Statements can't return value while the instructions can.
+ *  Any programming language consists of instructions and statements.
+ *  Unlike Java, in Kotlin statements can be instructions. In other words, they can return value.
+ *  Statements can't return value.
  *
  *  Example demonstrates:
- *
  *  1. 'if' statement
  *  2. 'when' statement
  *  3. 'for' statement
@@ -137,7 +136,7 @@ fun getWarmth(color: Color) =
         Color.BLUE, Color.INDIGO, Color.VIOLET -> "Холодный"
     }
 
-// When statement can work with not only constants but also with any objects
+// When statement can work with any objects
 fun mixColors(c1: Color, c2: Color) =
     when (setOf(c1, c2)) {
         setOf(Color.RED, Color.YELLOW) -> Color.ORANGE
@@ -162,7 +161,7 @@ fun mixColorsOptimized(c1: Color, c2: Color) =
         else -> throw Exception("Bad color combination")
     }
 
-// Example of more advance usage
+// Example of more advance usage of when statement
 fun checkType(e: Any): String =
     when (e) {
         is Int -> "Integer"

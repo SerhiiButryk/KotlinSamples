@@ -14,12 +14,9 @@ package lesson2_classes_sample
  *  4. copy()
  *
  *  Restrictions:
- *
  *  1. Data classes can inherit abstract classes, other classes and implement interface, but
  *  it can't inherit other Data classes (open keyword is NOT allowed on Data classes)
- *
  *  2. varargs are not allowed (due to some JVM limitations)
- *
  */
 
 /**

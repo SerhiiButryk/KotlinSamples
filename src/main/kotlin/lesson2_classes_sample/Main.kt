@@ -10,6 +10,15 @@ package lesson2_classes_sample
  * Properties of classes are fields along with setter and getter methods.
  * Properties in Kotlin can be of 2 types: val and var.
  *
+ * For accessing a field Kotlin provides 'field' keyword:
+ *  set(value) {
+ *      field = value
+ *  }
+ *  get() = field
+ *
+ *  A backing field is generated if a property used at least one default accessor (setter or getter)
+ *  or custom setter or getter uses 'field' keyword.
+ *
  * Lesson 2. Classes
  *
  *  Classes in Kotlin can have:
@@ -27,7 +36,6 @@ package lesson2_classes_sample
  *  and arbitrary name it.
  *
  */
-
 fun main() {
     // Create object
     val person = Person("John", false)
@@ -42,5 +50,5 @@ fun main() {
 
     // Class with custom getter
     val rectangle = Rectangle(100, 100)
-    println("Is square: $rectangle")
+    println("Is square: ${rectangle.isSquare}")
 }

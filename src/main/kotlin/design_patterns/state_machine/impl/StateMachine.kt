@@ -35,6 +35,7 @@ class StateMachine(private val client: TCPClientAPIs) {
             ConnectionState.CONNECTED -> client.connect()
             ConnectionState.LISTENING -> client.listen()
             ConnectionState.CLOSED -> client.close()
+            else -> { }
         }
 
         if (currentState == ConnectionState.FINISHED) {
@@ -53,6 +54,7 @@ class StateMachine(private val client: TCPClientAPIs) {
             ConnectionState.CONNECTED -> currentState = ConnectionState.LISTENING
             ConnectionState.LISTENING -> currentState = ConnectionState.CLOSED
             ConnectionState.CLOSED -> currentState = ConnectionState.FINISHED
+            else -> { }
         }
 
         processCurrentState()

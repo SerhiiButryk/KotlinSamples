@@ -1,9 +1,9 @@
 # KotlinExamples
 
-This repository contains samples in Kotlin which demonstrates its main features, syntax, best practices and coding style.
-The examples are what I consider to be helpful for me. Probably, this might be helpful for someone else.
+This repository contains Kotlin samples which demonstrates its main features, syntax, best practices and coding style.
+This is what I consider to be helpful for me. Probably, this can be helpful for someone else.
 
-Some examples are taken from the "Kotlin in action" book, which I am currently studying.
+Some examples are taken from the "Kotlin in action" book.
 
 Examples of Kotlin samples:
 
@@ -35,5 +35,11 @@ Examples of design patterns:
 4. **src/main/kotlin/design_patterns/state_machine** - state machine example.
 5. **src/main/kotlin/design_patterns/chain_of_responsibilities** - chain of responsibilities example.
 6. **src/main/kotlin/design_patterns/command** - command example.
+
+Samples for play ground:
+
+1. **src/main/kotlin/topics/custom_number_class** 
+2. **src/main/kotlin/topics/delegation_example**
+3. **src/main/kotlin/topics/regular_expressions**
 
 The list is going to be updated and extended.

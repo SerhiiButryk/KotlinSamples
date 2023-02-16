@@ -5,10 +5,9 @@
 package lesson1_hello_world_sample
 
 /**
- *  Basic program which demonstrates basic syntax of the language.
- *
+ *  Hello world sample.
  *  Compile:
- *  $ kotlinc GUIApp.kt -include-runtime -d app.jar
+ *  $ kotlinc Main.kt -include-runtime -d app.jar
  *  Run:
  *  $ java -jar app.jar Bob
  */
