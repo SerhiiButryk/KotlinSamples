@@ -11,8 +11,8 @@ import java.util.*
 
 /**
  *  Any programming language consists of instructions and statements.
- *  Unlike Java, in Kotlin statements can be instructions. In other words, they can return value.
- *  Statements can't return value.
+ *  Statements can't return value, but instructions can't.
+ *  In Kotlin statements can be instructions.
  *
  *  Example demonstrates:
  *  1. 'if' statement

@@ -11,7 +11,7 @@ import java.io.File
  * In Kotlin, 'object' keyword declares and creates an object. It plays 3 important roles:
  * 1. Can be used to implement Singleton pattern
  * 2. Can be used to implement Companion object
- * 3. Can be used to declare Anonimus class
+ * 3. Can be used to declare Anonymous class
  */
 
 /**
@@ -38,7 +38,7 @@ object CaseInsensitiveFileComparator : Comparator<File> {
 
 /**
  * Also object classes can be declared inside classes. In this case, only one object will be created.
- * Here comparator is logicaly placed inside the class which it compares.
+ * Here comparator is logically placed inside the class which it compares.
  */
 data class Person(val name: String) {
     object NameComparator : Comparator<Person> {

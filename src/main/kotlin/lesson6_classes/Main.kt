@@ -34,7 +34,7 @@ import lesson6_classes.utils.Service
  * For example, the next class declarations says that Expr can have
  * only 2 subclasses (Num and Sum)
  *
- * seald class Expr {
+ * sealed class Expr {
  *     class Num(val value: Int) : Expr()
  *     class Sum(val left: Expr, val right: Expr) : Expr()
  * }

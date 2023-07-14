@@ -60,7 +60,7 @@ import kotlin.text.StringBuilder
  *   To use this, you need to declare function using 'infix' keyword.
  *
  *   For example, consider this code:
- *   val map = mapOf(1 to "one", 7 to "seven", 53 to "fifty-three"
+ *   val map = mapOf(1 to "one", 7 to "seven", 53 to "fifty-three")
  *
  *   'to' is not a keyword. It's an infix function call.
  *   It is the same as:

@@ -8,43 +8,41 @@ package lesson6_classes
  * Example demonstrates class initialization order
  */
 
-class A : D {
-
-    val b = B()
+class Derived : Base {
 
     init {
-        println("Init block called of A class called")
+        println("Init block called of Derived class called")
     }
 
+    val b = DifferentClass()
+
     constructor(number: Int) {
-        println("A(Int) called")
+        println("Derived(Int) called")
     }
 
     override fun doSomething() {
-        println("A::doSomething() called")
+        println("Derived::doSomething() called")
     }
 }
 
-class B {
+class DifferentClass {
     constructor() {
-        println("B() called")
+        println("DifferentClass() called")
     }
 }
 
-open class D {
+open class Base {
     constructor() {
-        println("D() called")
+        println("Base() called")
     }
 
     open fun doSomething() {
-        println("D::doSomething() called")
+        println("Base::doSomething() called")
     }
 }
 
 fun main() {
-
     // Create objects
-    val a = A(10)
+    val a = Derived(10)
     a.doSomething()
-
 }
