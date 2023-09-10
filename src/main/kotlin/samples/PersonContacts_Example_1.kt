@@ -3,7 +3,7 @@
  * Author: Serhii Butryk
  */
 
-package short_examples
+package samples
 
 /**
  * Example of contact filtering program
@@ -37,12 +37,14 @@ class ContactListFilter(private val prefix: String = "", private val shouldHaveP
 }
 
 fun main() {
-    val contactsList = listOf(Person("Tom", "Semion", "123"),
+    val contactsList = listOf(
+        Person("Tom", "Semion", "123"),
         Person("Zom", "Femion"),
         Person("Aom", "Gemion", "123"),
         Person("Lom", "Hemion", "123"),
         Person("Pom", "Kemion"),
-        Person("Eom", "Zemion", "123"))
+        Person("Eom", "Zemion", "123")
+    )
 
     val prefix = "Z"
     val shouldHavePhoneNumber = true

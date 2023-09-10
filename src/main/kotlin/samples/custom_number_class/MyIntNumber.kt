@@ -3,7 +3,7 @@
  * Author: Serhii Butryk
  */
 
-package topics.custom_number_class
+package samples.custom_number_class
 
 /**
  * Custom class which is a wrapper for Int values.

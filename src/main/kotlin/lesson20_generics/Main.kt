@@ -3,7 +3,7 @@
  * Author: Serhii Butryk
  */
 
-package lesson20_templates
+package lesson20_generics
 
 import java.lang.IllegalArgumentException
 

@@ -11,7 +11,7 @@ package lesson16_delegation
  * 2. Lazy property delegation
  */
 
-import util.log
+import log
 import kotlin.reflect.KProperty
 
 // 1. Simple property delegation

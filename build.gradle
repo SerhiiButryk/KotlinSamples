@@ -14,6 +14,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0-RC")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.10")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     // Unit Tests
     implementation 'org.jetbrains.kotlin:kotlin-test'
     implementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'

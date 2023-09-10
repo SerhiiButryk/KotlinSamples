@@ -3,7 +3,7 @@
  * Author: Serhii Butryk
  */
 
-package topics.custom_number_class
+package samples.custom_number_class
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test

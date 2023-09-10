@@ -26,6 +26,7 @@ Examples of Kotlin samples:
 17. **src/main/kotlin/lesson17_operators** - use of operators.
 18. **src/main/kotlin/lesson18_high_order_function** - use of high order functions.
 19. **src/main/kotlin/lesson19_scope_function** - use of scope functions.
+20. **src/main/kotlin/lesson20_generics** - use of generics.
 
 Examples of design patterns:
 
@@ -38,8 +39,8 @@ Examples of design patterns:
 
 Samples for play ground:
 
-1. **src/main/kotlin/topics/custom_number_class** 
-2. **src/main/kotlin/topics/delegation_example**
-3. **src/main/kotlin/topics/regular_expressions**
+1. **src/main/kotlin/samples/custom_number_class** 
+2. **src/main/kotlin/samples/delegation_example**
+3. **src/main/kotlin/samples/regular_expressions**
 
 The list is going to be updated and extended.
