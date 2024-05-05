@@ -9,7 +9,7 @@ package samples
  * Example of contact filtering program
  */
 
-data class Person(val name: String, val lastName: String, val phoneNumber: String = "")
+data class Person(val name: String, val lastName: String = "", val phoneNumber: String = "")
 
 class ContactListFilter(private val prefix: String = "", private val shouldHavePhoneNumber: Boolean = false) {
 

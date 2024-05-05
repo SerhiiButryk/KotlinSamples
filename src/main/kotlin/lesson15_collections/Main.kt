@@ -33,6 +33,7 @@ fun main() {
 
     //////////////////////////////////////////////////////
     // Combine elements from several list collections in single one
+    //
     // flatten()
     //////////////////////////////////////////////////////
 
@@ -45,15 +46,42 @@ fun main() {
 
     //////////////////////////////////////////////////////
     // Transform and combine elements from several list collections in single one
-    // flatten()
+    //
+    // flatMap()
     //////////////////////////////////////////////////////
 
     val list2 = listOf(Person("John", listOf("252-233-23256", "3736-3839-3939")),
         Person("John", listOf("40-24-433-24o43256", "400-4949-5059")))
 
-    val newListWithAllPhoneNumbers = list2.flatMap { it.phones }
+    val newList2 = list2.flatMap { it.phones }
 
-    println(newListWithAllPhoneNumbers)
+    println(newList2)
+
+    //////////////////////////////////////////////////////
+    // Transform and combine elements from several list collections in single one
+    //
+    // mapIndexed()
+    //////////////////////////////////////////////////////
+
+    val list3 = listOf(1,2,3,4)
+
+    val newList3 = list3.mapIndexed { index, element -> println("$index $element") }
+
+    //////////////////////////////////////////////////////
+    // Convert to a map
+    //
+    // associateBy()
+    //////////////////////////////////////////////////////
+
+    val list4 = listOf(Person("John", listOf("3")),
+        Person("Andrey", listOf("1")),
+        Person("Andrey", listOf("2'")),
+        Person("Taras", listOf("2")))
+
+    val map = list4.associateBy { it.name }
+
+    print(map.keys)
+    println(map.values)
 }
 
 class Person(val name: String, val phones: List<String>)

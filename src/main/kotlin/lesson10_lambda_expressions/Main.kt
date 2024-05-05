@@ -16,11 +16,10 @@ package lesson10_lambda_expressions
  *
  * Features:
  * 1. Can be passed as an argument to a function.
- * 2. Can be saved to local variable.
+ * 2. Can be saved to a local variable.
  * 3. Can access and modify local variables.
+ * 4. Can be returned by functions
  *
- * However, lambda expressions doesn't have a return type.
- * If you want to specify return type explicitly use unanimous functions.
  */
 
 data class Person(val name: String, val age: Int)
@@ -28,13 +27,13 @@ data class Person(val name: String, val age: Int)
 fun main() {
 
     /**
-     * 1. Find the largest element in the list with lambda.
+     * 1. Find the largest element in the list using lambda.
      */
     val persons = listOf(Person("John", 29), Person("Tom", 31))
     println(persons.maxByOrNull { it.age })
 
     /**
-     * 2. Print people names with lambda.
+     * 2. Print people names using lambda.
      */
     val names = persons.joinToString (separator = " ",  transform = { p: Person -> p.name })
     println(names)
@@ -47,7 +46,7 @@ fun main() {
      */
     persons.maxByOrNull { p: Person -> p.age } // Type is specified explicitly
     persons.maxByOrNull { p -> p.age } // Type is deduced from the context
-    // Use default argument. The 'it' argument is available if lambda function has 1 parameter
+    // Using default argument. The 'it' argument is available if lambda function has 1 parameter
     persons.maxByOrNull { it.age }
 
     /**
@@ -56,12 +55,12 @@ fun main() {
     var clientErrors = 0
     var serverErrors = 0
 
-    // Imaginary collection with http status responses
+    // An imaginary collection which contains http status values
     val serverResponses = listOf("500 Internal Server Error", "404 Not Found")
 
     // Local function.
-    fun printProblemCounts() {
-        // Iterate throught eche http status response
+    fun printProblemCount() {
+        // Iterate through each http status response
         serverResponses.forEach { element ->
             if (element.startsWith("4")) {
                 clientErrors++
@@ -71,21 +70,21 @@ fun main() {
         }
     }
 
-    printProblemCounts()
+    printProblemCount()
     println("Client errors: $clientErrors, server errors: $serverErrors")
 
     /**
-     * 5. References to methods and class members.
+     * 5. A references to methods and class members.
      */
     fun sayHello() = println("Hello")
-    // You can call local function using run function.
+    // You can also call a function using run function.
     run(::sayHello)
 
     fun sendEmail(person: Person, message: String) {/* some code here */}
     val action = { person: Person, message: String ->
         sendEmail(person, message)
     }
-    // Reference to local function
+    // A reference to local function
     val nextAction = ::sendEmail
 
     // Reference to constructor
