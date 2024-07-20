@@ -1,4 +1,4 @@
-# KotlinExamples
+# Kotlin samples
 
 This repository contains Kotlin samples which demonstrates its main features, syntax, best practices and coding style.
 This is what I consider to be helpful for me. Probably, this can be helpful for someone else.
