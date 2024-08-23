@@ -6,10 +6,9 @@ package lesson2_classes_sample
 
 /**
  * Example of a simple class
- *
  * Compiler automatically generates setters and getters for fields if they are needed
  */
-class Rectangle(val height: Int, val width: Int) {
+class Rectangle(private val height: Int, private val width: Int) {
 
     /** Property which doesn't contain data.
      * There is no need to define property for holding

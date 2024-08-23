@@ -11,7 +11,10 @@ import java.util.concurrent.locks.ReentrantLock
 /**
  * Safe lock example
  *
- * Demonstrates how to proper use locks and to avoid deadlock
+ * Demonstrates how to properly use locks and to avoid deadlock
+ *
+ * The idea is to acquire a lock for every object. If we cannot do
+ * that then release locks and stop to give a chance other thread to complete its work
  */
 class Friend(private val name: String) {
 

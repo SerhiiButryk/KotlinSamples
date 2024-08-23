@@ -9,9 +9,12 @@ import log
 
 /**
  * Deadlock example
+ *
+ * Deadlock is a situation when 2 or more threads are blocked and cannot unblock or continue execution.
  */
 
 class Friend(private val name: String) {
+
     @Synchronized
     fun helloTo(friend: Friend) {
         log("helloTo(\"${friend.name}\") IN")

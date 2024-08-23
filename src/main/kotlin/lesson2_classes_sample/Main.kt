@@ -7,8 +7,8 @@ package lesson2_classes_sample
 /**
  * Lesson 1. Properties
  *
- * Properties of classes are fields along with setter and getter methods.
- * Properties in Kotlin can be of 2 types: val and var.
+ * Properties are data fields along with setter and getter methods.
+ * They can be of 2 types: val or var.
  *
  * For accessing a field Kotlin provides 'field' keyword:
  *  set(value) {
@@ -34,9 +34,8 @@ package lesson2_classes_sample
  *  Lesson 3. Packages
  *
  *  Kotlin doesn't have any restrictions on packages and files.
- *  In Kotlin, file doesn't need to have the same name as the class
- *  which it contains. Moreover, it allows to place several classes in one file
- *  and arbitrary name it.
+ *  A file doesn't need to have the same name as the class which it contains.
+ *  Moreover, it is possible to place several classes in one file and to have arbitrary name.
  *
  */
 fun main() {

@@ -13,6 +13,7 @@ import kotlin.random.Random
 /**
  * Conditional variable example
  *
+ * An idea is to block a thread until some condition or conditions are met
  * Demonstrates how to use conditional variable for suspending and notifying threads about some events
  */
 
@@ -27,7 +28,6 @@ class Queue(size: Int) {
     private var lastElementPointer: Int = 0
 
     fun add(data: Int) {
-
         lock.withLock {
             println("add() ${buffer.size} $lastElementPointer IN")
 
@@ -47,19 +47,18 @@ class Queue(size: Int) {
         }
     }
 
-    fun getFirstElement(): Int {
-
+    fun getFirst(): Int {
         lock.withLock {
 
-            println("getFirstElement() ${buffer.size} $lastElementPointer IN")
+            println("getFirst() ${buffer.size} $lastElementPointer IN")
 
             while (lastElementPointer == 0) {
                 // Need to wait
-                println("getFirstElement() waiting...")
+                println("getFirst() waiting...")
                 signalBufferIsEmpty.await()
             }
 
-            println("getFirstElement() proceed")
+            println("getFirst() proceed")
 
             val first = buffer[0]
 
@@ -67,7 +66,7 @@ class Queue(size: Int) {
 
             signalBufferIsFull.signal()
 
-            println("getFirstElement() ${buffer.size} $lastElementPointer OUT")
+            println("getFirst() ${buffer.size} $lastElementPointer OUT")
 
             return first
         }
@@ -81,13 +80,14 @@ fun main() {
     val queue = Queue(10)
 
     for (i in 0..5) {
+
         thread {
             queue.add(Random(19999999).nextInt(20))
         }
 
         thread {
-            Thread.sleep(10) // Get a chance fot the first thread to get started
-            queue.getFirstElement()
+            Thread.sleep(10) // Get some time for the first thread to get started
+            queue.getFirst()
         }
     }
 

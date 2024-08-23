@@ -25,12 +25,15 @@ fun main() {
 
     val john = Person("John", false)
 
-    // For example, "if" statement can return value.
+    /**
+     * If
+     */
     val message = if (john.isMarried) "John is married" else "John isn't married"
     println(message)
 
-    // Example of when statement
-    // Use with enums
+    /**
+     * When
+     */
     println("Got word: ${getMnemonic(Color.YELLOW)} for ${Color.YELLOW} color")
 
     // Use with enums
@@ -38,15 +41,13 @@ fun main() {
 
     // Use with objects
     println("Got color: ${mixColors(Color.YELLOW, Color.RED)}")
-    println("Got color: ${mixColors(Color.RED, Color.YELLOW)}")
-    println("Got color: ${mixColorsOptimized(Color.RED, Color.YELLOW)}")
 
     // More advance usage
     println("Try to check type: ${checkType(10)}")
 
-    /////////////////////////////////////////
-    //// For cycle
-    ////////////////////////////////////////
+    /**
+     * For
+     */
 
     /*
         Unlike Java, Kotlin doesn't have ordinary for cycle - for (int i=0; i<10; i++) { // do something }
@@ -63,7 +64,7 @@ fun main() {
     println("Cycle backward >>")
 
     // Cycle range in reverse order
-        for (i in 10 downTo 1 step 2) {
+    for (i in 10 downTo 1 step 2) {
         println("Got: $i")
     }
 

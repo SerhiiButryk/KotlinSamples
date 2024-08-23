@@ -9,7 +9,9 @@ import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.thread
 
 /**
- * Lock usage example
+ * Lock example
+ *
+ * The idea of a lock is to make sure that only one thread can access some code or 'critical section' at any time.
  */
 class Person(private val name: String) {
 

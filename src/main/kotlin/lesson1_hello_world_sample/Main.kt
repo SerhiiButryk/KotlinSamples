@@ -6,9 +6,11 @@ package lesson1_hello_world_sample
 
 /**
  *  Hello world sample.
- *  Compile:
+ *
+ *  To compile:
  *  $ kotlinc Main.kt -include-runtime -d app.jar
- *  Run:
+ *
+ *  To run:
  *  $ java -jar app.jar Bob
  */
 fun main(args: Array<String>) {
