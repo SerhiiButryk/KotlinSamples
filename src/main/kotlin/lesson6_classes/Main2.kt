@@ -42,7 +42,7 @@ open class Base {
 }
 
 fun main() {
-    // Create objects
+    // Create an objects
     val a = Derived(10)
     a.doSomething()
 }

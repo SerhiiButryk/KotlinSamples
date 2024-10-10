@@ -9,13 +9,13 @@ package algorithms.complexity
  *
  * Asymptotic analysis:
  *
- * 1) Time (A relative time which is sent by an algorithm)
+ * 1) Time (A relative time which is spent by an algorithm)
  *
  *  - Worst case
  *  - Best case
  *  - Average case
  *
- * 2) Memory (A relative memory which is sent by an algorithm)
+ * 2) Memory (A relative memory which is used by an algorithm)
  *
  * Common complexity patterns:
  * O(1)
@@ -48,13 +48,13 @@ fun f2(n: Int) { // Complexity - O(n)
     }
 }
 
-fun f3(n: Int, m: Int) { // Complexity - O(max(n, m) or O(n + m)
+fun f3(n: Int, m: Int) { // Complexity - O(max(n, m)) or O(n + m)
 
     for (i in 0 .. n) {
         println(n)
     }
 
-    for (i in 0 .. n) {
+    for (i in 0 .. m) {
         println(m)
     }
 }

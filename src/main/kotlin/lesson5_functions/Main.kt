@@ -30,11 +30,11 @@ import kotlin.text.StringBuilder
  *   Though you want to use Kotlin power in Java code. Extension functions is a way to do this.
  *
  *   Rules:
- *      1) Extension functions has access only to public member of a class (can't call protected private methods)
+ *      1) Extension functions has access only to public member of a class (can't call protected or private methods)
  *
- *      2) Extension functions can be used for Java and Kotlin classes
+ *      2) Extension functions can be used in Java and Kotlin classes
  *
- *      3) Extension functions can't be overridden - You can create an extension function in base and subclasses with
+ *      3) Extension functions can't be overridden. You can create an extension function in base and subclasses with
  *      the same name and parameters. However, if you try to call it, the function will be invoked
  *      depending on a static type of variable, but not on a dynamic type.
  *
@@ -42,7 +42,7 @@ import kotlin.text.StringBuilder
  *   For example, suppose we have 'lastChar' extension function. It conflicts with already existed name in a file.
  *   To resolve this we can do the next:
  *
- *   import strings.lastChar as last // Changing extension function name
+ *   import strings.lastChar as last - Changing extension function name
  *
  *   4) Property-extension
  *
@@ -125,7 +125,9 @@ var StringBuilder.lastChar: Char
 /**
  * Simple vararg function
  */
-fun countItems(flag: Int, vararg elements: String) {
+fun countItems(vararg elements: String) {
+    /* Here elements are Java array*/
+    println("countItems() class: ${elements.javaClass}")
     // Print values
     for (elem in elements) {
         println("Element: $elem")
@@ -189,5 +191,5 @@ fun main() {
 
     // Call vararg function. Note how array can be passed as argument.
     val otherElements: Array<String> = arrayOf("elem2", "elem3")
-    countItems(10, "elem1", *otherElements)
+    countItems("elem1", *otherElements)
 }
