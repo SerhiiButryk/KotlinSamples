@@ -9,67 +9,109 @@ import kotlinx.coroutines.*
 import log
 
 /**
- * Basic coroutine examples
+ * Lesson 1 - Basics
  *
- * Key points here:
- *
- * runBlocking() - a coroutine builder function which blocks its caller thread
- * launch() - a function which creates and launches a new coroutine
- * delay() and doWork() - suspend functions which don't block underling thread
- * coroutineScope() - a coroutine builder function which allows to start new coroutines limited to this scope
+ * Key concepts:
+ * 1. Coroutine is an instance of a code which can be run or suspended or completed
+ * 2. Coroutine scope is an entity inside which coroutines of the same hierarchy lives and exists
+ * 3. runBlocking(), launch() and async() - coroutine builder functions which creates, sets up and starts coroutines
+ * 4. Coroutine has its onw context, and we can override some configs in it
+ * 5. Coroutine knows about its parent and child coroutines
+ * 6. Coroutine may run concurrently but not always in parallel with other code
+ * 7. Coroutine can stop at the suspension points and then resume its execution
  */
-fun main() {
-    log("main started")
+fun main(): Unit {
 
-    runBlocking(CoroutineName("Coroutine #1")) { // coroutine #1
-        log("runBlocking() started")
+//    Uncomment to play with it
+//    example1_canceletion()
+//    example2_yield()
+//    example3_async()
 
-        launch(CoroutineName("Coroutine #2")) {// coroutine #2
-           doWork()
+}
+
+fun example1_canceletion() = runBlocking(CoroutineName("Coroutine#1")) {
+
+    logDebug("Running")
+
+    val job1 = launch(CoroutineName("Coroutine#2")) {
+        logDebug("Running")
+        delay(1000)
+        logDebug("End")
+    }
+
+    val job2 = launch(CoroutineName("Coroutine#3")) {
+        logDebug("Running")
+        try {
+            delay(5000)
+        } catch (e: CancellationException) {
+            logDebug("Canceled")
+            throw e
         }
-
-        doOtherWork()
-
-        log("runBlocking() finished")
+        logDebug("End")
     }
-
-    log("main finished")
-}
-
-suspend fun doWork() {
-    log("doWork started")
-    delay(2*1000)
-    log("doWork finished")
-}
-
-suspend fun doOtherWork() = coroutineScope {
-    log("doOtherWork() started")
-
-    launch(CoroutineName("Coroutine #3")) {// coroutine #3
-        delay(2*1000)
-        log("1 finished")
-    }
-
-    launch(CoroutineName("Coroutine #4")) {// coroutine #4
-        delay(2*1000)
-        log("2 finished")
-    }
-
-    // Here we can retrieve a result
-    val job: Deferred<Int> = async(CoroutineName("Coroutine #5") + Dispatchers.Default) { // coroutine #5
-        getResult()
-    }
-
-    val value = job.await()
-
-    log("doOtherWork() finished, result = $value")
-}
-
-suspend fun getResult(): Int {
-
-    log("getResult()")
 
     delay(1000)
 
+    // Cancels coroutine 3
+    job2.cancel()
+
+    logDebug("End")
+
+}
+
+fun example2_yield() = runBlocking(CoroutineName("Coroutine#1")) {
+
+    logDebug("Running")
+
+    val job1 = launch(CoroutineName("Coroutine#2")) {
+        logDebug("Running")
+        yield() // Ask to suspend and to execute some other tasks
+        logDebug("Continue")
+        yield() // Ask to suspend and to execute some other tasks
+        logDebug("Done!")
+    }
+
+    val job2 = launch(CoroutineName("Coroutine#3")) {
+        logDebug("Running")
+        yield() // Ask to suspend and to execute some other tasks
+        logDebug("Continue")
+        yield() // Ask to suspend and to execute some other tasks
+        logDebug("Done!")
+    }
+
+    logDebug("End")
+
+}
+
+fun example3_async() = runBlocking(CoroutineName("Coroutine#1")) {
+
+    logDebug("Running")
+
+    val job1 = launch(CoroutineName("Coroutine#2")) {
+        logDebug("Running")
+        delay(1000)
+        logDebug("End")
+    }
+
+    val job2: Deferred<Int> = async(CoroutineName("Coroutine#3")) {
+        compute()
+    }
+
+    // Cancels coroutine 3
+    val result = job2.await()
+    logDebug("Result is $result")
+
+    logDebug("End")
+
+}
+
+suspend fun compute(): Int {
+    // Long computation
+    delay(1000)
     return 10
+}
+
+ fun <T> CoroutineScope.logDebug(message: T) {
+    log("DEBUG: coroutine: ${coroutineContext[CoroutineName]?.name} = $this, my parent: ${coroutineContext[Job]?.parent}," +
+            " --> " + message)
 }

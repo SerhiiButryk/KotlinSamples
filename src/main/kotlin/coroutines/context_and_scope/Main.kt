@@ -15,17 +15,17 @@ import log
  * https://elizarov.medium.com/coroutine-context-and-scope-c8b255d59055
  */
 fun main() = runBlocking {
-    val scope = CoroutineScope(Dispatchers.Default)
 
     log("My context - $coroutineContext")
     println("My job is: ${coroutineContext[Job]}")
 
-    val job = scope.launch {
+    work()
+    work()
+}
+
+suspend fun work() = coroutineScope {
+    launch {
         delay(1000L)
         log("Task completed! $coroutineContext")
     }
-
-    delay(500L)
-    scope.cancel()
-    log("Scope canceled")
 }

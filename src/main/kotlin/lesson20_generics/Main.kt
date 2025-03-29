@@ -8,14 +8,26 @@ package lesson20_generics
 import java.lang.IllegalArgumentException
 
 /**
- * Templates
+ * Generics
  *
- * 1. Type names cam be used in class, method, interface and extension function
- * 2. You cannot create a template property
- *
- * 3. Reified keyword. You cannot check type of template value during runtime because
- * this information is not available. But if you have inline function you can do that.
+ * 1. Type names cam be used in class, method, interface and extension function & properties
+ * 2. You can't create a generic property which isn't an extension
+ * 3. Reified keyword can be used with inline function.
  */
+
+fun main() {
+
+    // 1. Generic type is inferred by compiler
+    val listA = listOf(1, 2, 4)
+    printSum(listA)
+
+    // 2. Type checking
+    println(listA.isType<String>())
+    println(listA.isType<Int>())
+
+    printClass<String>()
+
+}
 
 fun printSum(c: Collection<*>) {
     val list = c as? List<Int> ?: throw IllegalArgumentException("List is expected")
@@ -27,9 +39,7 @@ fun printSum(c: Collection<*>) {
  */
 inline fun <reified T> List<*>.isType(): Boolean {
     for (element in this) {
-        if (element is T) {
-            return true
-        }
+        return element is T
     }
     return false
 }
@@ -49,24 +59,6 @@ inline fun <reified T> List<*>.isType(): Boolean {
 /**
  * Another example
  */
- inline fun <reified T> printClass() {
+inline fun <reified T> printClass() {
     println(T::class.java.canonicalName)
-}
-
-fun main() {
-
-    val listA = listOf(1, 2, 4)
-    printSum(listA)
-
-    // ClassCastException will be thrown
-//    val listB = listOf("")
-//    printSum(listB)
-
-    // IllegalArgumentException will be thrown
-//    val set = setOf("Hello", "Hello")
-//    printSum(set)
-
-    println(listA.isType<String>())
-
-    printClass<String>()
 }

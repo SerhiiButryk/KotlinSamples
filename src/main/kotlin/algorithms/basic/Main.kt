@@ -10,7 +10,41 @@ package algorithms.basic
  */
 
 fun main() {
+
+    var num = 0
+
+    // 456
+    num += 6
+    num += 5 * 10
+    num += 4 * 100
+
+    println(num)
 }
+
+/**
+ * Binary search
+ * Array should be sorted
+ */
+fun binarySearch(arr: IntArray, value: Int): Int {
+
+    var start = 0
+    var end = arr.size - 1
+
+    while (start <= end) {
+        val middle = start + (end - start) / 2
+
+        if (value > arr[middle]) {
+            start = middle + 1
+        } else if (value < arr[middle]) {
+            end = middle - 1
+        } else {
+            return middle
+        }
+    }
+
+    return -1
+}
+
 
 /**
  * Bubble sort
@@ -34,7 +68,6 @@ fun bubbleSort(arr: IntArray) {
 /**
  * Quick sort
  * Worst case: O(N^2)
- *
  * https://www.youtube.com/watch?v=Vtckgz38QHs
  */
 fun quickSort(arr: IntArray, start: Int, end: Int) {

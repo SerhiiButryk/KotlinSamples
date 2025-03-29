@@ -7,5 +7,5 @@ import java.util.*
 
 fun <T: Any> log(message: T) {
     println("[${SimpleDateFormat("hh:mm:ss").format(Date())} " +
-            "THREAD-${Thread.currentThread().id}]-${Thread.currentThread().name} $message")
+            "THREAD-${Thread.currentThread().id} ${Thread.currentThread().name}] $message")
 }
