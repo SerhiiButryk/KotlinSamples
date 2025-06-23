@@ -21,7 +21,7 @@ import design_patterns.publisher_subscriber.impl.NotificationManager
  */
 fun main() {
 
-    // 1. Create main application class
+    // 1. Create samples.main application class
     val emailEditor = EmailEditor()
 
     // 2. Subscribe to events in EmailEditor class

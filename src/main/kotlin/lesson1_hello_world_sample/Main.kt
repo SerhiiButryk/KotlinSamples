@@ -8,7 +8,7 @@ package lesson1_hello_world_sample
  *  Hello world sample.
  *
  *  To compile:
- *  $ kotlinc Main.kt -include-runtime -d app.jar
+ *  $ kotlinc Sample_1.kt -include-runtime -d app.jar
  *
  *  To run:
  *  $ java -jar app.jar Bob

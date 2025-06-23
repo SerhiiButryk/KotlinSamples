@@ -14,7 +14,7 @@ package lesson15_collections
  *
  * Note that collections which are passed from Java have special PLATFORM TYPE.
  *
- * There are 3 main collection:
+ * There are 3 samples.main collection:
  * 1) Set
  * 2) List
  * 2) Map

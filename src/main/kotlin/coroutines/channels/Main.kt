@@ -6,9 +6,7 @@
 package coroutines.channels
 
 import kotlinx.coroutines.CoroutineName
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import log
@@ -25,10 +23,14 @@ import log
 
 fun main() {
 
-//    val buffered = Channel<Int>(10) // buffered
-//    val rendezvous = Channel<Int>() // rendezvous
-//    val unlimited = Channel<Int>(Channel.UNLIMITED)
-//    val conflated = Channel<Int>(Channel.CONFLATED)
+    // has a buffer of 10 elements
+    val buffered = Channel<Int>(10)
+    // a rendezvous channel, one of send() or receive() calls is always suspended
+    val rendezvous = Channel<Int>()
+    // has indefinite buffer size
+    val unlimited = Channel<Int>(Channel.UNLIMITED)
+    // has a buffer size of 1 and every send() call overrides the previous element
+    val conflated = Channel<Int>(Channel.CONFLATED)
 
     runBlocking<Unit> {
 

@@ -70,7 +70,7 @@ class Friend(private val name: String) {
 }
 
 fun main() {
-    log("main() IN")
+    log("samples.main() IN")
 
     val alice = Friend("Alice")
     val john = Friend("John")
@@ -91,7 +91,7 @@ fun main() {
 
     thread2.start()
 
-    log("main() OUT")
+    log("samples.main() OUT")
 }
 
 fun logTreadState(thread: Thread) {
