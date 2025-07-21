@@ -11,7 +11,7 @@ import java.lang.NumberFormatException
 
 /**
  * Unlike Java, Kotlin doesn't distinguish between checked and unchecked exceptions.
- * All exceptions are unchecked. You can handle exception or skip it.
+ * All exceptions are unchecked. You can handle or skip them.
  * Also, 'throw' clause is a statement in Kotlin, which can return value.
  * Pretty much like 'if-else' statement.
  *

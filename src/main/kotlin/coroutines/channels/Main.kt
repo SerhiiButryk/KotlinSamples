@@ -6,7 +6,12 @@
 package coroutines.channels
 
 import kotlinx.coroutines.CoroutineName
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.channels.consumeEach
+import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import log
@@ -21,7 +26,7 @@ import log
  * 4. Conflated
  */
 
-fun main() {
+fun main() = runBlocking {
 
     // has a buffer of 10 elements
     val buffered = Channel<Int>(10)
@@ -32,37 +37,66 @@ fun main() {
     // has a buffer size of 1 and every send() call overrides the previous element
     val conflated = Channel<Int>(Channel.CONFLATED)
 
-    runBlocking<Unit> {
+    val channel = Channel<String>(2)
 
-        val channel = Channel<String>(2)
+    launch(CoroutineName("Produce1")) {
+        log("Sending A1...")
+        channel.send("A1")
+        log("Sending A2...")
+        channel.send("A2")
+        log("A done")
+    }
 
-        launch(CoroutineName("Produce1")) {
-            log("Sending A1...")
-            channel.send("A1")
-            log("Sending A2...")
-            channel.send("A2")
-            log("A done")
+    launch(CoroutineName("Produce3")) {
+        log("Sending B2...")
+        channel.send("B2")
+        log("B2 done")
+        // Closing channel
+        channel.close()
+    }
+
+    launch(CoroutineName("Consumer1")) {
+        // Thread safe
+        for (element in channel) {
+            log("Consumed $element")
         }
+// Or not thread safe
+//            channel.consumeEach { log("Consumed $it") }
+    }
 
-        launch(CoroutineName("Produce2")) {
-            log("Sending B1...")
-            channel.send("B1")
-            log("B done")
-        }
+    // Produce example
 
-        launch(CoroutineName("Produce3")) {
-            log("Sending B1...")
-            channel.send("B1")
-            log("B done")
-        }
+    //The produce function closes the channel whenever the builder coroutine ends in any
+    // way (finished, stopped, cancelled). Thanks to this, we will never forget to call close.
 
-        launch(CoroutineName("Consumer1")) {
-            repeat(4) {
-                log("Receiving...")
-                val x = channel.receive()
-                log("Received: $x")
+    val newChannel1 = genNums()
+    val newChannel2 = genNums()
+
+    val mergedChannel = fanIn(listOf(newChannel1, newChannel2))
+
+    mergedChannel.consumeEach { log("New num: $it") }
+
+    log("All done !!!")
+
+}
+
+@OptIn(ExperimentalCoroutinesApi::class)
+fun CoroutineScope.genNums(): ReceiveChannel<Int> = produce {
+    var i = 0
+    repeat(4) {
+        send(i++)
+    }
+    close()
+    log("Channel closed!!!")
+}
+
+@OptIn(ExperimentalCoroutinesApi::class)
+fun <T> CoroutineScope.fanIn(channels: List<ReceiveChannel<T>>): ReceiveChannel<T> = produce {
+    for (channel in channels) {
+        launch {
+            for (element in channel) {
+                send(element)
             }
         }
     }
-
 }

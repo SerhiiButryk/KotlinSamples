@@ -10,9 +10,12 @@ import java.lang.IllegalArgumentException
 /**
  * Generics
  *
- * 1. Type names cam be used in class, method, interface and extension function & properties
+ * 1. Type names cam be used in classes, methods, interfaces and extensions function & properties
  * 2. You can't create a generic property which isn't an extension
  * 3. Reified keyword can be used with inline function.
+ *
+ * All generic classes by default are invariant. You can make them covariant using out keyword.
+ *
  */
 
 fun main() {
@@ -30,6 +33,8 @@ fun main() {
 }
 
 fun printSum(c: Collection<*>) {
+    // This is impossible to know at runtime what the actual type of elements in the
+    // list because of type eraser , that's why this type of check are unsafe
     val list = c as? List<Int> ?: throw IllegalArgumentException("List is expected")
     println("Sum: ${list.sum()}")
 }
