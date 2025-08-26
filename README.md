@@ -1,11 +1,8 @@
 # Kotlin samples
 
-This repository contains Kotlin samples which demonstrates its main features, syntax, best practices and coding style.
-This is what I consider to be helpful for me. Probably, this can be helpful for someone else.
+This repository contains Kotlin samples which demonstrates its main features, syntax, best practices and code style. I consider them very helpful and essential for every developer as some reference or a hint. 
 
-Some examples are taken from the "Kotlin in action" book.
-
-Examples of Kotlin samples:
+Basic Kotlin topics:
 
 1. **src/main/kotlin/lesson1_hello_world_sample** - hello-world sample.
 2. **src/main/kotlin/lesson2_classes_sample** - use of classes.
@@ -28,7 +25,7 @@ Examples of Kotlin samples:
 19. **src/main/kotlin/lesson19_scope_function** - use of scope functions.
 20. **src/main/kotlin/lesson20_generics** - use of generics.
 
-Examples of design patterns:
+Design patterns:
 
 1. **src/main/kotlin/design_patterns/bridge** - bridge example.
 2. **src/main/kotlin/design_patterns/publisher_subscriber** - observer example.
@@ -37,10 +34,19 @@ Examples of design patterns:
 5. **src/main/kotlin/design_patterns/chain_of_responsibilities** - chain of responsibilities example.
 6. **src/main/kotlin/design_patterns/command** - command example.
 
-Samples for play ground:
+Play ground:
 
 1. **src/main/kotlin/samples/custom_number_class** 
 2. **src/main/kotlin/samples/delegation_example**
 3. **src/main/kotlin/samples/regular_expressions**
+
+Coroutines (Flows & Channels):
+
+1. **src/main/kotlin/coroutines/bacis** 
+1. **src/main/kotlin/coroutines/channels** 
+1. **src/main/kotlin/coroutines/context_and_scope** 
+1. **src/main/kotlin/coroutines/flow** 
+1. **src/main/kotlin/coroutines/sequence** 
+1. **src/main/kotlin/coroutines/sharedstate** 
 
 The list is going to be updated and extended.

@@ -12,10 +12,10 @@ import kotlinx.coroutines.withContext
  * concurrently we have several options:
  *
  * 1. Regular lock object, but it blocks the threads
- * 2. Special Mutex class from coroutine library. It doesn't block the thread but suspends the coroutines
+ * 2. Special Mutex class from coroutine library. It doesn't block the thread but suspends the coroutine
  * 3. Restrict coroutine dispatcher of the critical section
  * 4. Add Semaphore if we want to limit the number of coroutine accessing the resource at the same time
- * 5. Operations with atomic reference
+ * 5. Operations with atomic reference/values
  */
 
 val sharedResource = mutableListOf<String>()

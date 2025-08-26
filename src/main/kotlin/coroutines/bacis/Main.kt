@@ -17,11 +17,12 @@ import kotlin.coroutines.resume
  * Coroutines
  *
  * Key concepts:
- * 1. Coroutine is an instance of a code which can be run or suspended or completed
+ *
+ * 1. Coroutine is an instance of a code which can be run, suspended or completed
  * 2. Suspensions happen on suspensions points.
- * 2. Coroutine scope is an entity inside which coroutines of the same hierarchy lives and exists
- * It also enables structural concurrency
- * 3. runBlocking(), launch() and async() - coroutine builder functions which creates a coroutine
+ * 2. Coroutine scope is an entity inside which coroutines of the same hierarchy live and exist
+ * It also makes structural concurrency possible
+ * 3. runBlocking(), launch() and async() - coroutine builder functions to create a coroutine
  * 4. Coroutine context is a container of local data for coroutines
  * 5. Coroutines may run concurrently but not always in parallel with other code
  */

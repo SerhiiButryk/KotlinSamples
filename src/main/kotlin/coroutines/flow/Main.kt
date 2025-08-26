@@ -5,6 +5,7 @@
 
 package coroutines.flow
 
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -19,7 +20,7 @@ import kotlin.system.measureTimeMillis
  * 1. What is flow ? Why do we need it ?
  *
  * Flow is a primitive which we can observe to receive multiple asynchronous value.
- * We can use it to make long computations and send the result while not blocking the main thread.
+ * We can use it to make long computations and deliver the result while not blocking the main thread.
  *
  * 2. How does it work ?
  *
@@ -33,12 +34,16 @@ import kotlin.system.measureTimeMillis
  *
  * 4. What is cold/hot flow ?
  *
- * Cold flow doesn't run if there is no collectors, while hot flow does some work every time when new value is assigned.
- * Cold flow is a flow created by flow{...} builder.
- * Hot flows are StateFlow and SharedFlow.
+ * Cold flow doesn't run if there is no collectors, while hot flow does some work as soon as new element/value is assigned.
+ * Cold flow is a flow created by flow{...} builder. Examples of hot flows are StateFlow and SharedFlow.
+ *
+ * Cold data sources are lazy. They can be infinite. Typically, they don't store elements and generate them on demand.
  *
  */
 
+// By definition this flow is not like any other coroutine builder.
+// It doesn't do processing. It only defines a set of operations which should be
+// done when the processing gets triggered by calling terminal operators.
 fun computeSimple(): Flow<Int> = flow {
     log("Flow started")
     for (i in 0..10) {
@@ -51,9 +56,7 @@ fun computeSimple(): Flow<Int> = flow {
 /**
  * Simple flow example
  */
-
-/*
-fun samples.main() = runBlocking {
+suspend fun main() = coroutineScope {
 
     launch {
         for (i in 0..3) {
@@ -78,14 +81,13 @@ fun samples.main() = runBlocking {
         }
 
 }
- */
 
 /**
  * Flow cancellation
  */
 
 /*
-fun samples.main() = runBlocking {
+fun main() = runBlocking {
 
 // Flow builders
 //    val flow = (1..3).asFlow()
@@ -136,53 +138,69 @@ fun samples.main() = runBlocking<Unit> {
 /*
 fun main() = runBlocking {
 
-    // zip()
-    println("---- zip() ---")
+/**
+ * Merge
+ */
 
-    var flow1 = (1..5).asFlow()
-    var flow2 = flowOf("one", "two", "tree")
+//    val flow1 = flowOf(1, 2, 3).onEach { delay(100) }
+//    val flow2 = flowOf(1.0, 2.0, 3.0)
+//
+//    val newFlow = merge(flow1, flow2)
+//    newFlow.collect { println(it) }
 
-    var flow3 = flow1.zip(flow2) { val1, val2 ->
-        "$val1 - $val2"
+//     REAL EXAMPLE OF FLOW MERGE
+
+//    fun listenForMessages() {
+//        merge(userSentMessages, messagesNotifications)
+//            .onEach { displayMessage(it) }
+//            .launchIn(scope)
+//    }
+
+/**
+ * Zip
+ */
+
+//    val flow1 = flowOf(1, 2, 3, 4)
+//        .onEach { delay(100) }
+//
+//    val flow2 = flowOf("A"  , "B", "C")
+//        .onEach { delay(1000) }
+//
+//    // Closed when the first flow is finished
+//    val newFlow = flow1.zip(flow2) { a, b -> "$a $b" }
+//        newFlow.collect { println(it) }
+
+/**
+ * Combine
+ */
+
+//    val flow1 = flowOf(1, 2, 3, 4)
+//        .onEach { delay(100) }
+//
+//    val flow2 = flowOf("A"  , "B", "C")
+//        .onEach { delay(1000) }
+//
+//    // The most recent values update older values in every pair
+//    // Closed when the two flows are finished
+//    val newFlow = flow1.combine(flow2) { a, b -> "$a $b" }
+//    newFlow.collect { println(it) }
+
+//    // A typical use case might be when a view needs to be either of two observable element changes.
+//    // For example, when a notification badge depends on both the current state of a user and some notifications,
+//    // we might observe them both and combine their changes to update a view.
+//    userStateFlow
+//    .combine(notificationsFlow) { userState, notifications ->
+//        updateNotificationBadge(userState, notifications)
+//    }
+//    .collect()
+
+    // Possible to convert suspend functions to Flow
+    val f = suspend {
+        delay(1000)
+        "Hello"
     }
 
-    flow3.collect { println(it) }
-
-    // Here we have some delay but result is the same
-
-    println("---- zip() ---")
-
-    flow1 = (1..3).asFlow().onEach { delay(300) }
-    flow2 = flowOf("one", "two", "tree").onEach { delay(400) }
-
-    val time = measureTimeMillis {
-
-        flow3 = flow1.zip(flow2) { val1, val2 ->
-            "$val1 - $val2"
-        }
-
-        flow3.collect { println(it) }
-    }
-
-    println("Collected in $time")
-
-    // combine()
-
-    println("---- combine() ---")
-
-    flow1 = (1..4).asFlow().onEach { delay(300) }
-    flow2 = flowOf("one", "two", "tree").onEach { delay(400) }
-
-    val time2 = measureTimeMillis {
-
-        flow3 = flow1.combine(flow2) { val1, val2 ->
-            "$val1 - $val2"
-        }
-
-        flow3.collect { println(it) }
-    }
-
-    println("Collected in $time2")
+    f.asFlow().collect { value -> println(value) }
 
     // A way to get only latest values but not all
 
@@ -199,3 +217,92 @@ fun main() = runBlocking {
     println(list)
 
 }*/
+
+/**
+ * channelFlow & callbackFlow
+ */
+/*
+fun main() = runBlocking {
+
+// Use to concurrently produce and consume data
+//    channelFlow {  }
+
+    fun flowFrom(api: CallbackBasedApi): Flow<T> = callbackFlow { val callback = object : Callback {
+        override fun onNextValue(value: T) { trySendBlocking(value)
+        }
+        override fun onApiError(cause: Throwable) {
+            cancel(CancellationException("API Error", cause))
+        }
+        override fun onCompleted() = channel.close() }
+        api.register(callback)
+        awaitClose { api.unregister(callback) }
+    }
+
+}
+*/
+
+/**
+ * flat map operations:
+ */
+
+/*
+fun main() = runBlocking {
+
+    // Processes elements sequentially
+
+    val transform = fun (element: String)
+        = flowOf(1, 2, 3)
+            .onEach { delay(1000) }
+            .map { "$it $element" }
+
+    flowOf("A", "B", "C")
+        .flatMapConcat { transform(it) }
+        .collect { println(it) }
+
+    // Processes elements concurrently
+
+    // The typical use of flatMapMerge is when we need to request data for each element in a flow.
+    // For instance, we have a list of categories, and you need to request offers for each of them.
+    // You already know that you can do this with the async function.
+    // There are two advantages of using a flow with flatMapMerge instead:
+
+    // • we can control the concurrency parameter and decide how many categories
+    // we want to fetch at the same time (to avoid sending hundreds of requests at the same time);
+
+    // • we can return Flow and send the next elements as they arrive
+    // (so, on the function-use side, they can be handled immediately).
+
+    //    suspend fun getOffers( categories: List<Category>
+    //    ): Flow<Offer> = categories
+    //    .asFlow()
+    //    .flatMapMerge(concurrency = 20) {
+    //        suspend { api.requestOffers(it) }.asFlow()
+    //        // or flow { emit(api.requestOffers(it)) }
+    //
+
+/*
+    val transform = fun (element: String)
+        = flowOf(1, 2, 3)
+            .onEach { delay(1000) }
+            .map { "$it $element" }
+
+    flowOf("A", "B", "C")
+        .flatMapMerge { transform(it) }
+        .collect { println(it) }
+ */
+
+    // The last one is flatMapLatest. It forgets about the previous flow once a new one appears.
+
+ /*
+    val transform = fun (element: String)
+        = flowOf(1, 2, 3)
+            .onEach { delay(1000) }
+            .map { "$it $element" }
+
+    flowOf("A", "B", "C")
+        .flatMapLatest { transform(it) }
+        .collect { println(it) }
+ */
+
+}
+*/
