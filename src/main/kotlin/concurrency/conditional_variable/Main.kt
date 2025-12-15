@@ -17,6 +17,9 @@ import kotlin.random.Random
  * Demonstrates how to use conditional variable for suspending and notifying threads about some events
  */
 
+annotation class ThreadSafe
+
+@ThreadSafe
 class Queue(size: Int) {
 
     private val lock = ReentrantLock()

@@ -3,7 +3,7 @@
  * Author: Serhii Butryk
  */
 
-package algorithms.task1
+package algorithms.others
 
 fun main() {
 

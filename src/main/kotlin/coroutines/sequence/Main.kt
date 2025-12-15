@@ -16,7 +16,8 @@ package coroutines.sequence
 fun main() {
 
     // It is essential to know that sequence terminal operations (like forEach) are not suspending,
-    // so any suspension inside a sequence builder means blocking the thread that waits for the value.
+    // so any suspension (thread sleep) inside a sequence builder means blocking the
+    // thread that waits for the value.
     // This is why, in the scope of a sequence builder, you cannot use any suspending function
     // except for those called on the SequenceScope receiver (yield and yieldAll)
     val list = sequence {

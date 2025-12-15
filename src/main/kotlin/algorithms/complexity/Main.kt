@@ -9,13 +9,13 @@ package algorithms.complexity
  *
  * Asymptotic analysis:
  *
- * 1) Time (A relative time which is spent by an algorithm)
+ * 1) Time - a relative time which is spent by an algorithm
  *
  *  - Worst case
  *  - Best case
  *  - Average case
  *
- * 2) Memory (A relative memory which is used by an algorithm)
+ * 2) Memory - a relative memory which is used by an algorithm
  *
  * Common complexity patterns:
  * O(1)

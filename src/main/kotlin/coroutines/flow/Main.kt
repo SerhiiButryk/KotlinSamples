@@ -5,14 +5,9 @@
 
 package coroutines.flow
 
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withTimeoutOrNull
 import log
-import kotlin.system.measureTimeMillis
 
 /**
  * Flow
@@ -20,7 +15,7 @@ import kotlin.system.measureTimeMillis
  * 1. What is flow ? Why do we need it ?
  *
  * Flow is a primitive which we can observe to receive multiple asynchronous value.
- * We can use it to make long computations and deliver the result while not blocking the main thread.
+ * We can use it to do long computations and deliver the result while not blocking the main thread.
  *
  * 2. How does it work ?
  *
@@ -30,20 +25,27 @@ import kotlin.system.measureTimeMillis
  *
  * Flow operators are functions which can be applied on the upstream flow.
  * Every operator does some operations like filtering, modification or manipulation with data.
- * Terminal operation are functions which eventually collects the flow. So, the values can be received by the client code.
+ * Terminal operation are functions which eventually collects the flow.
+ * So, the values can be received by the client code.
  *
  * 4. What is cold/hot flow ?
  *
- * Cold flow doesn't run if there is no collectors, while hot flow does some work as soon as new element/value is assigned.
- * Cold flow is a flow created by flow{...} builder. Examples of hot flows are StateFlow and SharedFlow.
+ * Cold flow doesn't run if there is no collectors, while hot flow does some work as soon as new
+ * element/value is assigned.
+ * Cold flow is a flow created by flow{...} builder. Hot flows are StateFlow or SharedFlow.
  *
  * Cold data sources are lazy. They can be infinite. Typically, they don't store elements and generate them on demand.
+ *
+ * 5. Testing flows
+ *
+ * Use take() or 'background scope' for testing infinite flows
+ * Use onStart() onCompletion() to do something in the begging or in the end
  *
  */
 
 // By definition this flow is not like any other coroutine builder.
 // It doesn't do processing. It only defines a set of operations which should be
-// done when the processing gets triggered by calling terminal operators.
+// done when the processing gets triggered by terminal operators.
 fun computeSimple(): Flow<Int> = flow {
     log("Flow started")
     for (i in 0..10) {
@@ -53,10 +55,28 @@ fun computeSimple(): Flow<Int> = flow {
     log("Flow finished")
 }
 
+suspend fun getUserName(): String { delay(1000)
+    return "UserName" }
+
 /**
  * Simple flow example
  */
 suspend fun main() = coroutineScope {
+
+    // Flow is frequently used to represent a single value delayed
+    // in time (like a Single in RxJava). So, it makes sense to
+    // convert a suspending function into a flow. The result of
+    // this function will be the only value in this flow.
+    val f = suspend {
+        delay(1000)
+        "Hello"
+    }
+
+    f.asFlow().collect { value -> println(value) }
+
+    // OR REGULAR FUNCTION
+    ::getUserName .asFlow()
+        .collect { println(it) }
 
     launch {
         for (i in 0..3) {
@@ -85,15 +105,9 @@ suspend fun main() = coroutineScope {
 /**
  * Flow cancellation
  */
+fun flowCancellation() = runBlocking {
 
-/*
-fun main() = runBlocking {
-
-// Flow builders
-//    val flow = (1..3).asFlow()
-//    val flow = flowOf(1, 2, 3)
-
-    log("Main is started")
+    log("flowCancellation is started")
 
     withTimeoutOrNull(100) {
         try {
@@ -105,16 +119,20 @@ fun main() = runBlocking {
         }
     }
 
-    log("Main is finished")
+    // Or
+//    computeSimple()
+//        .takeWhile { it < 5 }
+//        .collect { v ->
+//        log("Got $v")
+//    }
+
+    log("flowCancellation is finished")
 
 }
- */
 
 /**
  * Flow operators
  */
-
-/*
 fun numbers(): Flow<Int> = flow {
     try {
         emit(1)
@@ -128,27 +146,29 @@ fun numbers(): Flow<Int> = flow {
     }
 }
 
-fun samples.main() = runBlocking<Unit> {
+fun flowOperators() = runBlocking {
     numbers()
         .take(2) // take only the first two
         .collect { value -> println(value) }
 }
- */
 
-/*
-fun main() = runBlocking {
+fun flowOperatorsAdvance() = runBlocking {
 
-/**
- * Merge
- */
+    /**
+     * Merge
+     * Coroutine Provider gets launched on every flow in the list, sends each value to a channel
+     * Coroutine Consumer receives from the channel end emits every value to new Flow
+     */
 
-//    val flow1 = flowOf(1, 2, 3).onEach { delay(100) }
-//    val flow2 = flowOf(1.0, 2.0, 3.0)
-//
-//    val newFlow = merge(flow1, flow2)
-//    newFlow.collect { println(it) }
+    val flow1 = flowOf(1, 2, 3).onEach { delay(100) }
+    val flow2 = flowOf(1.0, 2.0, 3.0)
 
-//     REAL EXAMPLE OF FLOW MERGE
+    val newFlow = merge(flow1, flow2)
+    newFlow.collect { println(it) }
+
+    /**
+     * REAL EXAMPLE OF FLOW MERGE
+     */
 
 //    fun listenForMessages() {
 //        merge(userSentMessages, messagesNotifications)
@@ -158,53 +178,51 @@ fun main() = runBlocking {
 
 /**
  * Zip
+ *
+ * Completes when one of the flow completes and close other uncompleted flow.
  */
 
-//    val flow1 = flowOf(1, 2, 3, 4)
-//        .onEach { delay(100) }
-//
-//    val flow2 = flowOf("A"  , "B", "C")
-//        .onEach { delay(1000) }
-//
-//    // Closed when the first flow is finished
-//    val newFlow = flow1.zip(flow2) { a, b -> "$a $b" }
-//        newFlow.collect { println(it) }
+    val flow3 = flowOf(1, 2, 3, 4)
+        .onEach { delay(100) }
+
+    val flow4 = flowOf("A"  , "B", "C")
+        .onEach { delay(1000) }
+
+    // Closed when the first flow is finished
+    val newFlow2 = flow3.zip(flow4) { a, b -> "$a $b" }
+    newFlow2.collect { println(it) }
 
 /**
  * Combine
+ *
+ * The most recent values update older values in every pair
+ * Closed when the two flows are finished
  */
 
-//    val flow1 = flowOf(1, 2, 3, 4)
-//        .onEach { delay(100) }
-//
-//    val flow2 = flowOf("A"  , "B", "C")
-//        .onEach { delay(1000) }
-//
-//    // The most recent values update older values in every pair
-//    // Closed when the two flows are finished
-//    val newFlow = flow1.combine(flow2) { a, b -> "$a $b" }
-//    newFlow.collect { println(it) }
+    val flow5 = flowOf(1, 2, 3, 4)
+        .onEach { delay(100) }
 
-//    // A typical use case might be when a view needs to be either of two observable element changes.
-//    // For example, when a notification badge depends on both the current state of a user and some notifications,
-//    // we might observe them both and combine their changes to update a view.
+    val flow6 = flowOf("A"  , "B", "C")
+        .onEach { delay(1000) }
+
+    val newFlow3 = flow5.combine(flow6) { a, b -> "$a $b" }
+    newFlow3.collect { println(it) }
+
+    // A typical use case might be when a view needs to get either of two observable element changes.
+    // For example, when a notification badge depends on both the current state of a user and some notifications,
+    // we might observe them both and combine their changes to update a view.
+
 //    userStateFlow
 //    .combine(notificationsFlow) { userState, notifications ->
 //        updateNotificationBadge(userState, notifications)
 //    }
 //    .collect()
 
-    // Possible to convert suspend functions to Flow
-    val f = suspend {
-        delay(1000)
-        "Hello"
-    }
-
-    f.asFlow().collect { value -> println(value) }
-
-    // A way to get only latest values but not all
-
-    println("---- conflate() ---")
+/**
+ * Conflate
+ *
+ * A way to get only latest values but not all
+ */
 
     val flow = flow {
         for (i in 0..30) {
@@ -216,30 +234,28 @@ fun main() = runBlocking {
     val list = flow.conflate().onEach { delay(1000) }.toList()
     println(list)
 
-}*/
+}
 
 /**
  * channelFlow & callbackFlow
  */
-/*
-fun main() = runBlocking {
+fun callbackFlowTest() = runBlocking {
 
 // Use to concurrently produce and consume data
 //    channelFlow {  }
 
-    fun flowFrom(api: CallbackBasedApi): Flow<T> = callbackFlow { val callback = object : Callback {
-        override fun onNextValue(value: T) { trySendBlocking(value)
-        }
-        override fun onApiError(cause: Throwable) {
-            cancel(CancellationException("API Error", cause))
-        }
-        override fun onCompleted() = channel.close() }
-        api.register(callback)
-        awaitClose { api.unregister(callback) }
-    }
+//    fun flowFrom(api: CallbackBasedApi): Flow<T> = callbackFlow { val callback = object : Callback {
+//        override fun onNextValue(value: T) { trySendBlocking(value)
+//        }
+//        override fun onApiError(cause: Throwable) {
+//            cancel(CancellationException("API Error", cause))
+//        }
+//        override fun onCompleted() = channel.close() }
+//        api.register(callback)
+//        awaitClose { api.unregister(callback) }
+//    }
 
 }
-*/
 
 /**
  * flat map operations:

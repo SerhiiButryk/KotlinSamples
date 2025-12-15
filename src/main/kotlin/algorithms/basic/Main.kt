@@ -10,20 +10,11 @@ package algorithms.basic
  */
 
 fun main() {
-
-    var num = 0
-
-    // 456
-    num += 6
-    num += 5 * 10
-    num += 4 * 100
-
-    println(num)
 }
 
 /**
  * Binary search
- * Array should be sorted
+ * Array must be sorted
  */
 fun binarySearch(arr: IntArray, value: Int): Int {
 

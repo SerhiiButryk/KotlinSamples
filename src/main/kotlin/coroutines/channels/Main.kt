@@ -26,7 +26,12 @@ import log
  * 4. Conflated
  */
 
+@OptIn(ExperimentalCoroutinesApi::class)
 fun main() = runBlocking {
+
+    /**
+     * Creating a channel
+     */
 
     // has a buffer of 10 elements
     val buffered = Channel<Int>(10)
@@ -36,6 +41,14 @@ fun main() = runBlocking {
     val unlimited = Channel<Int>(Channel.UNLIMITED)
     // has a buffer size of 1 and every send() call overrides the previous element
     val conflated = Channel<Int>(Channel.CONFLATED)
+
+    /**
+     * Channel builder
+     */
+
+    val newChannel = produce {
+        send(1)
+    }
 
     val channel = Channel<String>(2)
 
