@@ -43,6 +43,48 @@ import log
  *
  */
 
+// How does flow work ?
+
+suspend fun testFlow() = coroutineScope {
+
+    val flow = flow<Int> {
+        for (i in 1..10) {
+            delay(100)
+            emit(i)
+        }
+    }.filter { it % 2 == 0 }.map { it * 10 }
+
+    flow.collect { println(it) }
+
+    //---------->
+    /*
+        flow map@ {
+
+            flow filter@ {
+
+                flow main@ {
+
+                    for (i in 1..10) {
+                        delay(100)
+                        emit(i)
+                    }
+
+                } collect { value ->
+                    if (it % 2 == 0)
+                      filter@.emit(it)
+                }
+
+            } collect { value ->
+                  map@.emit(it * 10)
+            }
+
+
+        }.collect { value ->
+            println(it)
+        }
+    */
+}
+
 // By definition this flow is not like any other coroutine builder.
 // It doesn't do processing. It only defines a set of operations which should be
 // done when the processing gets triggered by terminal operators.
@@ -237,25 +279,21 @@ fun flowOperatorsAdvance() = runBlocking {
 }
 
 /**
- * channelFlow & callbackFlow
+ * callbackFlow
  */
-fun callbackFlowTest() = runBlocking {
-
-// Use to concurrently produce and consume data
-//    channelFlow {  }
-
-//    fun flowFrom(api: CallbackBasedApi): Flow<T> = callbackFlow { val callback = object : Callback {
-//        override fun onNextValue(value: T) { trySendBlocking(value)
+//    fun flowFrom(api: CallbackBasedApi): Flow<T> = callbackFlow {
+    //    val callback = object : Callback {
+    //        override fun onNextValue(value: T) { trySendBlocking(value)
+    //        }
+    //        override fun onApiError(cause: Throwable) {
+    //            cancel(CancellationException("API Error", cause))
+    //        }
+    //        override fun onCompleted() = channel.close()
 //        }
-//        override fun onApiError(cause: Throwable) {
-//            cancel(CancellationException("API Error", cause))
-//        }
-//        override fun onCompleted() = channel.close() }
+//
 //        api.register(callback)
 //        awaitClose { api.unregister(callback) }
 //    }
-
-}
 
 /**
  * flat map operations:

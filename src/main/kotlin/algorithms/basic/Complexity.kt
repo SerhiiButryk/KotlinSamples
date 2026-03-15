@@ -3,7 +3,7 @@
  * Author: Serhii Butryk
  */
 
-package algorithms.complexity
+package algorithms.basic
 
 /**
  *

@@ -3,16 +3,17 @@
  * Author: Serhii Butryk
  */
 
-package algorithms.others
+package algorithms.examples
 
 fun main() {
 
 }
 
-// Find a 0-1 pair in a sequence with 0 and 1 numbers with few attempts
+// Find a first (0,1) pair in a sequence with 0 and 1 numbers in few attempts
 // Example of sequence:
 // | 0 |  |  |  |  |  |  |  | ... | 1 |
 // The first elem should be '0' and the last elem should be '1'
+// Uses method of binary search
 fun find01Pairs(arr: Array<Int>): Int { // Complexity - O(log(n))
 
     // Don't check empty array
