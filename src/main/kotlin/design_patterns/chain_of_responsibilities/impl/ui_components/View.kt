@@ -28,7 +28,7 @@ open class View {
     }
 
     /*
-        Decide whether to handle or to proceed
+        Decide whether to handle or proceed
      */
     fun dispatchTouchEvent(event: TouchEvent) {
         println("View.dispatchTouchEvent $this IN")

@@ -5,8 +5,8 @@
 package lesson2_classes_sample
 
 /**
- * Example of simple enum class.
- * Each constant filed of this enum class is single object.
+ * An enum class.
+ * Each enum constant field is a single object at runtime.
  */
 enum class Color(val red: Int, val green: Int, val blue: Int) {
 

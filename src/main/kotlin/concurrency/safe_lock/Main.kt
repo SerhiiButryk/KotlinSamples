@@ -11,10 +11,10 @@ import java.util.concurrent.locks.ReentrantLock
 /**
  * Safe lock example
  *
- * Demonstrates how to properly use locks and to avoid deadlock
+ * Demonstrates how to properly use locks and avoid deadlock
  *
  * The idea is to acquire a lock for every object. If we cannot do
- * that then release locks and stop to give a chance other thread to complete its work
+ * that, release locks and stop to give another thread a chance to complete its work.
  */
 class Friend(private val name: String) {
 
@@ -22,7 +22,7 @@ class Friend(private val name: String) {
 
     fun helloTo(friend: Friend) {
         log("helloTo(\"${friend.name}\") IN")
-        Thread.sleep(10) // Some long operations
+        Thread.sleep(10) // Simulate a long-running operation
         if (canHello(friend)) {
             try {
                 log("helloTo(\"${friend.name}\") ready for hello")

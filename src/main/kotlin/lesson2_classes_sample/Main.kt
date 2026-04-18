@@ -7,14 +7,15 @@ package lesson2_classes_sample
 /**
  * Lesson 1. Properties
  *
- * Properties are data fields along with setter and getter methods.
- * They can be of 2 types: val or var.
+ * Properties are data fields plus its setter and getter methods.
  *
  * For accessing a field Kotlin provides 'field' keyword:
  *  set(value) {
  *      field = value
  *  }
  *  get() = field
+ *
+ * Backing field:
  *
  *  A backing field is generated if a property used at least one default accessor (setter or getter)
  *  or custom setter or getter uses 'field' keyword.
@@ -35,7 +36,7 @@ package lesson2_classes_sample
  *
  *  Kotlin doesn't have any restrictions on packages and files.
  *  A file doesn't need to have the same name as the class which it contains.
- *  Moreover, it is possible to place several classes in one file and to have arbitrary name.
+ *  Moreover, it is possible to place several classes in one file with arbitrary names.
  *
  */
 fun main() {

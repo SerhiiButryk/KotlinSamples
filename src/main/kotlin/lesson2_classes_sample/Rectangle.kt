@@ -5,8 +5,7 @@
 package lesson2_classes_sample
 
 /**
- * Example of a simple class
- * Compiler automatically generates setters and getters for fields if they are needed
+ * A class with a primary and secondary constructor
  */
 class Rectangle(private val height: Int, private val width: Int) {
 
@@ -19,5 +18,12 @@ class Rectangle(private val height: Int, private val width: Int) {
         get() {
             return height == width
         }
+
+    /**
+     * Secondary constructor
+     */
+    constructor() : this(100,100) {
+
+    }
 
 }

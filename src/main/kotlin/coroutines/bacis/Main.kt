@@ -19,7 +19,7 @@ import kotlin.coroutines.resume
  * Key concepts:
  *
  * 1. Coroutine is an instance of a code which can be run, suspended or completed
- * 2. Suspensions happen on suspensions points.
+ * 2. Suspensions happen at suspension points.
  * 2. Coroutine scope is an entity inside which coroutines of the same hierarchy live and exist
  * It also makes structural concurrency possible
  * 3. runBlocking(), launch() and async() - coroutine builder functions to create a coroutine
@@ -27,7 +27,7 @@ import kotlin.coroutines.resume
  * 5. Coroutines may run concurrently but not always in parallel with other code
  */
 fun main() {
-    example1_canceletion()
+    example1_cancellation()
     example2_yield()
     example3_async()
 }
@@ -35,9 +35,9 @@ fun main() {
 /**
  * Cancellation example
  */
-fun example1_canceletion() = runBlocking(CoroutineName("Coroutine#1")) {
+fun example1_cancellation() = runBlocking(CoroutineName("Coroutine#1")) {
 
-    logDebug("example1_canceletion() Started")
+    logDebug("example1_cancellation() Started")
 
     val job2 = launch(CoroutineName("Coroutine#3")) {
         logDebug("Running")
@@ -75,17 +75,17 @@ fun example2_yield() = runBlocking(CoroutineName("Coroutine#1")) {
 
     val job1 = launch(CoroutineName("Coroutine#2")) {
         logDebug("Running")
-        yield() // Ask to suspend and to execute some other tasks
+        yield() // Ask to suspend and execute other tasks
         logDebug("Continue")
-        yield() // Ask to suspend and to execute some other tasks
+        yield() // Ask to suspend and execute other tasks
         logDebug("Done!")
     }
 
     val job2 = launch(CoroutineName("Coroutine#3")) {
         logDebug("Running")
-        yield() // Ask to suspend and to execute some other tasks
+        yield() // Ask to suspend and execute other tasks
         logDebug("Continue")
-        yield() // Ask to suspend and to execute some other tasks
+        yield() // Ask to suspend and execute other tasks
         logDebug("Done!")
     }
 

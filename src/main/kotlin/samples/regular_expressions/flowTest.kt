@@ -9,8 +9,8 @@
  * Regular-expression constructs:
  *
  * \d+ - matches 1 digit or more
- * \b - matches a space that proceeds or follows a whole word, for example "My dog", it matches a space between "My"
- * and "dog" words
+ * \b - matches a boundary before or after a whole word, for example "My dog"; it matches the position between "My"
+ * and "dog"
  *
  * ? - matches 0 or 1 repetitions
  * * - matches 0 or more repetitions

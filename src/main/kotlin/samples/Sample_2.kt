@@ -10,8 +10,8 @@ package samples
  * https://www.youtube.com/watch?v=4cUQR7-YV5U
  *
  * A double dispatch is an approach when we select a function or operation
- * based on receiver and argument real runtime time. It could be a feature of a language
- * or it could be implemented programmatically
+ * based on the real receiver and argument type during runtime time.
+ * It could be a feature of a language, or it could be implemented programmatically
  */
 
 sealed interface People {
@@ -56,7 +56,7 @@ fun main() {
 
     for (dog in dogs) {
         for (people in peoples) {
-            // Note here that we call a function from Dog based on
+            // Note here that we call a function on Dog based on
             // 'people' object runtime type
             people.meet(dog)
         }
