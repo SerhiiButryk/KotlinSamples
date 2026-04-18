@@ -14,7 +14,7 @@ import java.util.concurrent.locks.ReentrantLock
  * Demonstrates how to properly use locks and avoid deadlock
  *
  * The idea is to acquire a lock for every object. If we cannot do
- * that, release locks and stop to give another thread a chance to complete its work.
+ * that, release the locks and stop, giving another thread a chance to complete its work.
  */
 class Friend(private val name: String) {
 

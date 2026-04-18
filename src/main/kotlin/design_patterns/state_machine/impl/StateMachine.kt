@@ -6,8 +6,8 @@
 package design_patterns.state_machine.impl
 
 /**
- * State machine which handles states and its transitions in one place.
- * It only calls client in order to process the current state.
+ * A state machine that handles states and their transitions in one place.
+ * It only calls the client in order to process the current state.
  */
 class StateMachine(private val client: TCPClientAPIs) {
 

@@ -6,9 +6,10 @@
 package lesson14_special_types
 
 /**
- * Special types in Kotlin
+ * Special types
  *
- * There are 3 special types:
+ * There are 4 special types:
+ *
  * 1. Nothing
  * 2. Unit
  * 3. Any

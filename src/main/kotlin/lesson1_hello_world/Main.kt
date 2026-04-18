@@ -2,7 +2,7 @@
  * Copyright 2021. Happy coding ! :)
  * Author: Serhii Butryk
  */
-package lesson1_hello_world_sample
+package lesson1_hello_world
 
 /**
  *  Hello world sample.

@@ -4,14 +4,14 @@ This repository contains Kotlin samples which demonstrates its main features, sy
 
 Basic Kotlin topics:
 
-1. **src/main/kotlin/lesson1_hello_world_sample** - hello-world sample.
-2. **src/main/kotlin/lesson2_classes_sample** - use of classes.
-3. **src/main/kotlin/lesson3_statements_sample** - use of statements and operators.
+1. **src/main/kotlin/lesson1_hello_world** - hello-world sample.
+2. **src/main/kotlin/lesson2_simple_class** - use of classes.
+3. **src/main/kotlin/lesson3_statements** - use of statements and operators.
 4. **src/main/kotlin/lesson4_exceptions** - use of exceptions.
 5. **src/main/kotlin/lesson5_functions** - use of functions.
 6. **src/main/kotlin/lesson6_classes** - use of different declaration of classes.
 7. **src/main/kotlin/lesson7_class_constructors** - use of primary constructors.
-8. **src/main/kotlin/lesson8_secondary_constructor** - use of secondary constructors.
+8. **src/main/kotlin/lesson8_properties** - use of secondary constructors.
 9. **src/main/kotlin/lesson9_object_declaration** - use of "object" keyword.
 10. **src/main/kotlin/lesson10_lambda_expressions** - use of lambda.
 11. **src/main/kotlin/lesson11_lambda_collections** - use of lambda in collections.

@@ -5,9 +5,7 @@
 package lesson6_classes.cars
 
 /**
- * In this example compiler forces us to use 'driveCar' keyword.
- * This happens because both interfaces have same method.
- * Note that we can call base implementation here
+ * Calling specific base class implementation
  */
 class AudiCar : Engine, MyCar {
 

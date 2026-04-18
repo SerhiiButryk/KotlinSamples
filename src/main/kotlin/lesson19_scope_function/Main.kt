@@ -5,7 +5,11 @@
 
 package lesson19_scope_function
 
-class Person() {
+/**
+ * Scope functions
+ */
+
+class Person {
     var name: String = ""
     var age: Int = 0
 }

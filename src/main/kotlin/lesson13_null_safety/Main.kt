@@ -6,24 +6,27 @@
 package lesson13_null_safety
 
 /**
- * Null safety in Kotlin
+ * Null safety
  *
  * Kotlin has 4 standard approaches for working with null values:
+ *
  * 1. Safe operator - 'a.?fun()'
  * 2. Elvis operator - '?:'
  * 3. Safe cast - 'as?' which doesn't throw exception
  * 4. Let function with safe call
  *
  * Also, there are some additional language features:
+ *
  * 1. Null cast (!! operator)
  * 2. Extension function with null value support
  * 3. Operator lateinit
  *
- * Cases when variable can be bull
- * 1. Variable which declared as T
- * 2. Variable which comes from Java code
+ * Cases when a variable can be null
  *
- * Note that variables which comes from Java have special PLATFORM TYPE.
+ * 1. Variable that is declared as T
+ * 2. Variable that comes from Java code
+ *
+ * Note that variables that come from Java have a special PLATFORM TYPE.
  */
 
 fun main() {
@@ -67,7 +70,7 @@ fun main() {
 
     // 4. Type parameters can have null values
     myFunc(null)
-    // Can not have null values
+    // Cannot have null values
     myFunc2("hello")
 }
 

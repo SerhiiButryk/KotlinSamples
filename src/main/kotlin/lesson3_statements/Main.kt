@@ -2,19 +2,22 @@
  * Copyright 2021. Happy coding ! :)
  * Author: Serhii Butryk
  */
-package lesson3_statements_sample
+package lesson3_statements
 
-import lesson2_classes_sample.Color
-import lesson2_classes_sample.Person
+import lesson2_simple_class.Color
+import lesson2_simple_class.Person
 import java.lang.Exception
 import java.util.*
 
 /**
+ *  Statements
+ *
  *  Any programming language consists of instructions and statements.
- *  Statements can't return value, but instructions can't.
- *  Statements can be also instructions.
+ *  Statements can't return values, but expressions can.
+ *  Statements can also be instructions.
  *
  *  Example demonstrates:
+ *
  *  1. 'if' statement
  *  2. 'when' statement
  *  3. 'for' statement
@@ -42,7 +45,7 @@ fun main() {
     // Use with objects
     println("Got color: ${mixColors(Color.YELLOW, Color.RED)}")
 
-    // More advance usage
+    // More advanced usage
     println("Try to check type: ${checkType(10)}")
 
     /**
@@ -50,8 +53,8 @@ fun main() {
      */
 
     /*
-        Unlike Java, Kotlin doesn't have ordinary for cycle - for (int i=0; i<10; i++) { // do something }
-        Kotlin has only one type of for cycle - ranges.
+        Unlike Java, Kotlin doesn't have a traditional for loop - for (int i = 0; i < 10; i++) { // do something }
+        Kotlin only has one kind of for loop: ranges.
     */
 
     println("Cycle upward >>")
@@ -111,7 +114,7 @@ fun main() {
 
     println("isLetter = $isLetter isDigit = $isDigit")
 
-    // Any objects can be compared with 'in' operator
+    // Any object can be compared with the 'in' operator
     println("Kotlin" in "Java".."Scala")
     // or
     println("Kotlin" in setOf("Java", "Scala"))
@@ -137,7 +140,7 @@ fun getWarmth(color: Color) =
         Color.BLUE, Color.INDIGO, Color.VIOLET -> "Холодный"
     }
 
-// When statement can work with any objects
+// The when statement can work with any object
 fun mixColors(c1: Color, c2: Color) =
     when (setOf(c1, c2)) {
         setOf(Color.RED, Color.YELLOW) -> Color.ORANGE
@@ -147,7 +150,7 @@ fun mixColors(c1: Color, c2: Color) =
     }
 
 // Method with better performance than mixColors method
-// Instead of setOf() calls we use logic operation as a condition
+// Instead of setOf() calls, we use a logical operation as a condition
 fun mixColorsOptimized(c1: Color, c2: Color) =
     when {
         ((c1 == Color.RED && c2 == Color.YELLOW) ||
@@ -162,7 +165,7 @@ fun mixColorsOptimized(c1: Color, c2: Color) =
         else -> throw Exception("Bad color combination")
     }
 
-// Example of more advance usage of when statement
+// Example of more advanced usage of when statement
 fun checkType(e: Any): String =
     when (e) {
         is Int -> "Integer"

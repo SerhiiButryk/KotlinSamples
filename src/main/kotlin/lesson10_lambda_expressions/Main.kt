@@ -8,13 +8,15 @@ package lesson10_lambda_expressions
  * Lambda functions.
  *
  * Lambda functions are good because:
- * 1. They simplify work with collections.
- * 2. They make code more understandable.
+ *
+ * 1. They work with collections.
+ * 2. They make code more clear.
  * 3. They help to get rid of code duplication.
  *
  * Syntax: (x: Int, y: Int) -> x + y
  *
  * Features:
+ *
  * 1. Can be passed as an argument to a function.
  * 2. Can be saved to a local variable.
  * 3. Can access and modify local variables.

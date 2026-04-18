@@ -5,9 +5,7 @@
 package lesson6_classes.cars
 
 /**
- * Example of simple interface declaration
- *
- * Methods are abstract or open by default
+ * An interface declaration
  */
 interface MyCar {
     fun getCarModel() = "My car model"

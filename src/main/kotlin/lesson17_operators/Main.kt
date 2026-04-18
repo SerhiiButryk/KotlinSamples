@@ -8,7 +8,7 @@ package lesson17_operators
 import java.lang.IndexOutOfBoundsException
 
 /**
- * Operators in Kotlin.
+ * Operators
  * -------------------------
  *
  * Binary operators:
@@ -46,11 +46,12 @@ import java.lang.IndexOutOfBoundsException
  *
  *  Other operators
  *  ------------------------------
- *  == , != -> equals()
- *  >, <, >=, <= -> compareTo()
- *  in -> contains()
- *  [index] -> get(), set()
- *  10..20 -> rangeTo()
+ *  == , !=         -> equals()
+ *  ===             -> reference comparison
+ *  >, <, >=, <=    -> compareTo()
+ *  in              -> contains()
+ *  [index]         -> get(), set()
+ *  10..20          -> rangeTo()
  *  element in list -> iterator()
  *
  *  -------------------------------

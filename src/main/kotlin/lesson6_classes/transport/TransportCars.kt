@@ -6,9 +6,9 @@ package lesson6_classes.transport
 
 import lesson6_classes.cars.Engine
 
-// Example of abstract class.
-// Note that classes are final by default.
-// So to allow overriding they need open keyword
+/**
+ * An abstract class
+ */
 abstract class TransportCars : Engine {
 
     // This is final and public

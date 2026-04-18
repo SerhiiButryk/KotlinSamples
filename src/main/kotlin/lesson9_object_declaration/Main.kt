@@ -4,18 +4,21 @@
  */
 package lesson9_object_declaration
 
-import lesson2_classes_sample.Person
+import lesson2_simple_class.Person
 import java.io.File
 
 /**
- * In Kotlin, 'object' keyword declares and creates an object. It plays 3 important roles:
+ * 'object' keyword declares or creates an object.
+ *
+ * It plays 3 important roles:
+ *
  * 1. Can be used to implement Singleton pattern
  * 2. Can be used to implement Companion object
  * 3. Can be used to declare Anonymous class
  */
 
 /**
- * 1. Singleton object
+ * 1. A singleton object
  */
 object Payroll {
     val allEmployees = arrayListOf<Person>()
@@ -121,15 +124,15 @@ fun MyPerson2.Companion.fromJSON(json: String) {
     println("fromJSON() is called")
 }
 
-interface MauseListener {
+interface MouseListener {
     fun mouseClicked(actionId: Int)
     fun mouseEntered(actionId: Int)
 }
 
 class Window {
-    private var mouseListeners = mutableListOf<MauseListener>()
+    private var mouseListeners = mutableListOf<MouseListener>()
 
-    fun addMouseListener(listener: MauseListener) {
+    fun addMouseListener(listener: MouseListener) {
         if (!mouseListeners.contains(listener)) {
             mouseListeners.add(listener)
         }
@@ -176,7 +179,7 @@ fun main() {
      */
     val myWindow = Window()
     myWindow.addMouseListener(
-        object : MauseListener {
+        object : MouseListener {
             override fun mouseClicked(actionId: Int) {
                 println("mouseClicked() is called")
             }
@@ -190,7 +193,7 @@ fun main() {
     var counter = 0
 
     // Note that the class has access to local variables.
-    val listener = object : MauseListener {
+    val listener = object : MouseListener {
         override fun mouseClicked(actionId: Int) {
             println("mouseClicked() is called")
             counter++ // Access local variable

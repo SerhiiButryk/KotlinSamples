@@ -45,14 +45,14 @@ class Game {
     suspend fun onFirstTeamScores() {
         // Updates atomically
         _scoreFlow.updateAndGet { it.copy(first = it.first + 1) }
-        // Give a change another coroutine to do its work
+        // Give a chance to another coroutine to do its work
         yield()
     }
 
     suspend fun onSecondTeamScores() {
         // Updates atomically
         _scoreFlow.updateAndGet { it.copy(second = it.second + 1) }
-        // Give a change another coroutine to do its work
+        // Give a chance to another coroutine to do its work
         yield()
     }
 }

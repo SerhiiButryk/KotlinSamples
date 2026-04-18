@@ -10,17 +10,20 @@ class Service {
         println("performService, $serviceName")
     }
 
-    // This class is analog to private static class in Java
+    // This class is equivalent to a static class in Java
     class ServiceHelper {
         fun lookUpService(service: String) {}
     }
 
-    // This class has reference to outer class
+    // This class is equivalent to a nested class which holds a reference
+    // to the outer class in Java
     inner class ServiceHandler {
         fun handle() {
-            // Can access method from outer class
+
+            // Use implicit reference
             performService("")
-            // Or using reference to outer class
+
+            // Or use explicit reference
             this@Service.performService("")
         }
     }

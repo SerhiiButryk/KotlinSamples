@@ -14,12 +14,12 @@ import design_patterns.states.impl.TCPClient
  * Description:
  *
  * Let's assume that we have one giant class with internal state.
- * When state is changed, class should change the behavior. Code is difficult to support
- * and extend, because it's hard to understand all places where class behaviors differently.
+ * When state changes, the class should change its behavior. Code is difficult to support
+ * and extend because it's hard to understand all the places where the class behaves differently.
  *
- * It better to create a class for each state, move common code to base class and
- * code which depends on state to subclasses. In this case, we can change the code
- * without a fear of breaking functionality, because code is isolated in different classes.
+ * It's better to create a class for each state, move common code to a base class, and
+ * code that depends on state to subclasses. In this case, we can change the code
+ * without fear of breaking functionality because code is isolated in different classes.
  *
  * Definition: Let an object alter its behavior when its internal state changes.
  * It appears as if the object changed its class.
@@ -37,9 +37,9 @@ fun main() {
     tcpClient.close()
 
     // Instead of one class, there are several smaller classes
-    // which handles states and conditions.
+    // which handle states and conditions.
     // This can reduce complexity and increase maintainability of the code.
-    // However, this pattern is not 100 % correct for all situations.
-    // So, use it if it really has benefits.
+    // However, this pattern is not 100% correct for all situations.
+    // So use it only if it really has benefits.
 
 }

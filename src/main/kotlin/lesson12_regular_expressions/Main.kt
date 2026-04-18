@@ -5,19 +5,20 @@
 package lesson12_regular_expressions
 
 /**
- * Regular expressions in Kotlin.
+ * Regular expressions
  *
- * Kotlin adds new operator for defining regular expressions.
- * It is triple quotes - """ """. Here are the examples of work with regular expressions.
+ * Kotlin adds a new operator for defining regular expressions.
+ * It uses triple quotes: """...""". Here are examples of working with regular expressions.
  *
  * Concept of groups in regex:
  * https://pynative.com/python-regex-capturing-groups/
+ *
  * Test here:
  * https://regexr.com/
  */
 fun main() {
 
-    // Do not need to escape special characters with this syntax
+    // You do not need to escape special characters with this syntax
     val pattern1 = """(\.|-)"""
     val text = "12.345-6.A"
 
@@ -29,7 +30,7 @@ fun main() {
 
     val path = "/Users/myname/desktop/file/my.doc"
 
-    // Do not need to escape special characters with this syntax
+    // You do not need to escape special characters with this syntax
     val regex = """(.+)/(.+)\.(.+)""".toRegex()
 
     val matchResult = regex.findAll(path)

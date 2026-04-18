@@ -2,7 +2,7 @@
  * Copyright 2021. Happy coding ! :)
  * Author: Serhii Butryk
  */
-package lesson2_classes_sample
+package lesson2_simple_class
 
 /**
  *  Data class example.

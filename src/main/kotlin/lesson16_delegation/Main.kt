@@ -4,69 +4,65 @@
  */
 package lesson16_delegation
 
-/**
- * Delegation example
- *
- * 1. Simple property delegation
- * 2. Lazy property delegation
- */
-
-import log
+import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-// 1. Simple property delegation
+/**
+ * Delegation
+ *
+ * Properties can be decorated using by keyword. This can be useful when you need
+ * to reuse getter/setter logic.
+ *
+ * The next example demonstrates this feature.
+ */
 
-abstract class Driver {
-    // Object getter interface
-    abstract operator fun getValue(thisRef: Machine, property: KProperty<*>): Driver
-    // Object setter interface
-    abstract operator fun setValue(thisRef: Machine, property: KProperty<*>, value: Driver)
-    abstract fun drive()
+// Suppose we have class Person. We need to add formatting
+// to 'name' and 'lastname' fields. We can do this using setter/getter.
+// However, logic will be duplicated if we don't use delegation.
+// Property delegation resolves this issue.
+class Person(name: String, lastname: String) {
+    var name: String by FormatDelegate()
+    var lastname: String by FormatDelegate()
 }
 
-class CarDriver : Driver() {
-    override fun getValue(thisRef: Machine, property: KProperty<*>): Driver {
-        log("CarDriver.getValue() {thisRef = $thisRef, property = $property}")
-        return this
+class FormatDelegate : ReadWriteProperty<Any?, String> {
+    private var formattedString: String = ""
+
+    override fun getValue(thisRef: Any?, property: KProperty<*>): String {
+        return formattedString
     }
 
-    override fun setValue(thisRef: Machine, property: KProperty<*>, value: Driver) {
-        log("CarDriver.setValue() {thisRef = $thisRef, property = $property, driver = $value}")
-        // no-op
-    }
-
-    override fun drive() {
-        log("CarDriver.drive() driving...")
+    override fun setValue(thisRef: Any?, property: KProperty<*>, value: String) {
+        formattedString = value.lowercase().replaceFirstChar { it.uppercase() }
     }
 }
 
-class Machine() {
-    // All method calls are called from CarDriver()
-    private val driver: Driver by CarDriver()
-    fun drive() { driver.drive() }
-}
+/**
+ * Delegation to an object
+ *
+ * Decorator pattern is supported natively by the Kotlin language.
+ * The next example demonstrates how to implement decorator around collection in Kotlin.
+ *
+ * The next class overrides 2 methods 'add' and 'addAll'. All other calls are delegated to collection object.
+ */
+class CountingSet<T>(
+    val innerSet: MutableCollection<T>
+) : MutableCollection<T> by innerSet {
 
-// 2. Lazy property delegation
+    var objectsAdded = 0
 
-class Person {
-    private val emails by lazy { loadEmailsFromDatabase() }
-    // Long operation
-    private fun loadEmailsFromDatabase() : List<String> {
-        log("Person.loadEmailsFromDatabase() getting emails...")
-        return listOf("email1@com", "email2@co'm")
+    override fun add(element: T): Boolean {
+        objectsAdded++
+        return innerSet.add(element)
     }
-    fun getUserEmails(): List<String> = emails
+
+    override fun addAll(elements: Collection<T>): Boolean {
+        objectsAdded += elements.size
+        return innerSet.addAll(elements)
+    }
+
 }
 
 fun main() {
 
-// 1. Simple property delegation
-
-    val machine = Machine()
-    machine.drive()
-
-// 2. Lazy property delegation
-
-    val person = Person()
-    person.getUserEmails()
 }

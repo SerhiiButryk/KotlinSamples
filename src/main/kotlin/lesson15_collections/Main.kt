@@ -6,20 +6,22 @@
 package lesson15_collections
 
 /**
- * Collections in Kotlin
+ * Collections
  *
- * In Kotlin collections can be
+ * In Kotlin, collections can be
+ *
  * 1) Mutable or immutable
  * 3) Nullable or not nullable (can or cannot have null elements)
  *
- * Note that collections which are passed from Java have special PLATFORM TYPE.
+ * Note that collections passed from Java have a special PLATFORM TYPE.
  *
- * There are 3 samples.main collection:
+ * There are three sample collections:
+ *
  * 1) Set
  * 2) List
- * 2) Map
+ * 3) Map
  *
- * Collection can be created by the next methods:
+ * Collections can be created by the following methods:
  *
  *          |        read only  |   read and write
  * -----------------------------------------------------------------------------------

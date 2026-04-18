@@ -12,10 +12,10 @@ import kotlin.text.StringBuilder
  *
  * 1) Named arguments
  *
- *   You can assign name to function arguments during its invocation.
- *   This helps to make code more readable and avoid mistakes.
- *   For example, typical mistakes are when parameters order has changed and arguments order hasn't.
- *   This feature is very helpful when function has default arguments.
+ *   You can assign names to function arguments during invocation.
+ *   This helps make code more readable and avoid mistakes.
+ *   For example, typical mistakes occur when the parameter order has changed but the argument order hasn't.
+ *   This feature is very helpful when a function has default arguments.
  *
  * 2) Default arguments
  *
@@ -25,9 +25,9 @@ import kotlin.text.StringBuilder
  *
  *  3) Extension functions
  *
- *   This is functions which can be invoked as class member functions. However, it's declared outside of class.
- *   Imagine when you have a lot of Java code which can't be rewritten to Kotlin.
- *   Though you want to use Kotlin power in Java code. Extension functions is a way to do this.
+ *   These are functions that can be invoked like class member functions, even though they're declared outside a class.
+ *   Imagine when you have a lot of Java code that can't be rewritten to Kotlin.
+ *   If you want to use Kotlin's power in Java code, extension functions are a way to do this.
  *
  *   Rules:
  *      1) Extension functions has access only to public member of a class (can't call protected or private methods)

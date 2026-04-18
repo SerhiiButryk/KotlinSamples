@@ -9,15 +9,15 @@ package design_patterns.mediator
  * Mediator pattern
  *
  * Description:
- * If you have a lot of classes which depends on each other, it's hard to reuse them.
+ * If you have a lot of classes that depend on each other, it's hard to reuse them.
  *
- * Better if you create a controller(mediator) class and allows them to talk to it.
- * Classes should talk to mediator class instead of communication to each other.
+ * It's better to create a controller (mediator) class and allow them to talk to it.
+ * Classes should talk to the mediator class instead of communicating directly with each other.
  *
- * In other words, they shouldn't know about other classes only about mediator class.
- * Meanwhile, mediator knows about every class and controls communication between them.
+ * In other words, they shouldn't know about other classes, only about the mediator.
+ * Meanwhile, the mediator knows about every class and controls communication between them.
  *
- * In this way you have benefits:
+ * This approach provides the following benefits:
  * 1. You can reuse code
  * 2. You can add new mediator classes
  * 3. You can reduce dependencies and prepare code for modularization.

@@ -5,7 +5,7 @@
 package lesson6_classes.transport
 
 /**
- * Example of derived class. Here we can override only 2 methods.
+ * A derive class
  */
 class BusCar : TransportCars() {
 

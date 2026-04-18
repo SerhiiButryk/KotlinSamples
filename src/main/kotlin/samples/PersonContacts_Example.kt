@@ -20,8 +20,8 @@ class ContactListFilter(private val prefix: String = "", private val shouldHaveP
             person.name.startsWith(prefix) || person.lastName.startsWith(prefix)
         }
 
-        // If we don't need to check phone number then return
-        // function which only checks name and last name
+        // If we don't need to check the phone number, return
+        // a function that only checks the first name and last name
         if (!shouldHavePhoneNumber) {
             return hasPrefix
         }

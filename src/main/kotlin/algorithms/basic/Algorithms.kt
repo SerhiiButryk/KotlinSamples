@@ -51,7 +51,7 @@ fun bubbleSort(array: Array<Int>) {
  * 1) Comparisons - O(N^2)
  * 2) Swaps - O(N)
  *
- * It's better in swaps if comparing to bubble sort algorithm.
+ * It performs fewer swaps compared to bubble sort.
  * However, the complexity is still O(N^2) for large arrays.
  */
 fun selectionSort(array: Array<Int>) {

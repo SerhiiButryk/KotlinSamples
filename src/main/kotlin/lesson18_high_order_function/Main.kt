@@ -4,11 +4,18 @@
  */
 package lesson18_high_order_function
 
+import log
+import samples.Person
+import kotlin.collections.forEach
+import kotlin.collections.remove
+
 /**
+ * High order functions
+ *
  * 1. Lambda function with a receiver
  * 2. Lambda function without a receiver
  * 3. Anonymous function
- * 4. Non local return from lambda function
+ * 4. Non-local return from lambda function
  * 5. Local return from lambda function
  */
 
@@ -38,42 +45,65 @@ fun main() {
     println(repeatFunction3("hello", 2))
 
     /**
-     * 4. Non local return from lambda function
+     * 4. Local return
      */
-//    val res = lookForAlice(listOf("Tom", "Alice", "Taras"))
-//    val res = lookForAlice2(listOf("Tom", "Alice", "Taras", "Sem", "John"))
-    val res = lookForAlice3(listOf("Tom", "Alice", "Taras", "Sem", "John"))
-    println(res)
+    val withAlice = mutableListOf(Person("John"), Person("Alice"), Person("Serhii"))
+    findAlice(withAlice)
+
+    /**
+     * 5. Non-local return
+     */
+    findAndRemove(withAlice, "Alice")
+
+    /**
+     * Sometimes we can't inline lambda function
+     */
+    val newClass = ClassSavesLambdaInAFiled()
+    newClass.calculate { println("Hello") }
 }
 
-fun lookForAlice(names: List<String>): Boolean {
-    names.forEach { name ->
-        if (name == "Alice") {
-            // Alice is found !
-            return true
+// Cannot inline lambda cos it is saved in a member field
+class ClassSavesLambdaInAFiled {
+
+    var action: (() -> Unit)? = null
+
+    // We had to add 'noinline' here, otherwise this will not compile
+    inline fun calculate(noinline action: () -> Unit) {
+        this.action = action
+    }
+}
+
+// Local return
+fun findAlice(list: List<Person>) {
+    list.forEach {
+        if (it.name == "Alice") {
+            log("Alice is found")
+            return
+        }
+        log("Alice not found")
+    }
+}
+
+// Non-local return
+fun findAndRemove(list: MutableList<Person>, name: String) {
+    var found: Person? = null
+    list.forEach exit@{
+        if (it.name == name) {
+            found = it
+            return@exit
         }
     }
-    // Alice in not found
-    return false
+    list.remove(found)
 }
 
-fun lookForAlice2(names: List<String>): Boolean {
-    names.forEach local_return@ { name ->
-        println("In lambda function")
-        if (name == "Alice") return@local_return
+// Or
+fun findAndRemove2(list: MutableList<Person>, name: String) {
+    var found: Person? = null
+    list.forEach {
+        if (it.name == name) {
+            found = it
+            return@forEach
+        }
     }
-    println("Out from lambda function !")
-    // Alice in not found
-    return false
-}
-
-// anonymous function
-fun lookForAlice3(names: List<String>): Boolean {
-    names.forEach (fun (name) {
-        println("In anonymous function")
-        if (name == "Alice") return
-    })
-    println("Out from lambda function !")
-    // Alice in not found
-    return false
+    list.remove(found)
 }

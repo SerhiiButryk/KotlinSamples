@@ -7,10 +7,8 @@ package lesson11_lambda_collections
 import lesson10_lambda_expressions.Person
 
 /**
- * Using Lambda functions in Collections
+ * Lambda functions and collections
  *
- * 1. Map - modifying every element in collection
- * 2. Filter - remove element in collection if true, add element to new collection if false
  */
 
 fun main() {
