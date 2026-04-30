@@ -1,4 +1,6 @@
-package algorithms.basic
+package algorithms
+
+import kotlin.text.iterator
 
 /**
  * Stack demo examples
@@ -14,7 +16,7 @@ fun main() {
 
 fun makeParenthesisCheck(test: String): Boolean {
 
-    val stack = MyStack(20)
+    val stack = MyStack<Char>(20)
 
     for (char in test) {
 
@@ -57,18 +59,26 @@ fun parenthesesMatches(open: Char, close: Char): Boolean {
     }
 }
 
-class MyStack(size: Int) {
+class MyStack<T>(size: Int) {
 
-    private val arr = Array(size) { ' ' }
+    private val arr = Array<Any?>(size) { null }
     private var top = -1
 
-    fun push(value: Char) {
+    fun push(value: T) {
         arr[++top] = value
     }
 
-    fun pop() = arr[top--]
+    fun pop(): T {
+        val value = arr[top]
+        arr[top] = null
+        --top
+        return value as T
+    }
 
-    fun peek() = arr[top]
+    fun peek(): T {
+        val value = arr[top]
+        return value as T
+    }
 
     fun isEmpty() = top == -1
     fun isFull() = top == arr.lastIndex

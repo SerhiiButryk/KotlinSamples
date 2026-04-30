@@ -1,4 +1,4 @@
-package algorithms.basic
+package algorithms
 
 /**
  * Array demonstrates algorithms of insertion, search and deletion

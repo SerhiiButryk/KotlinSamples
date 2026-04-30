@@ -1,13 +1,4 @@
-/*
- * Copyright 2024. Happy coding ! :)
- * Author: Serhii Butryk
- */
-
-package algorithms.examples
-
-fun main() {
-
-}
+package algorithms
 
 // Find the first (0,1) pair in a sequence of 0 and 1 values with few attempts
 // Example sequence:
